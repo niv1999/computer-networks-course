@@ -1,0 +1,8 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+node_modules/
+
+# internal build material — intentionally kept OUT of the public repo
+_notes/
+_build/
