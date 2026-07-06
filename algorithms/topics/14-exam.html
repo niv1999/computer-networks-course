@@ -147,7 +147,7 @@
          BLOCK 1 — המבחן לדוגמה 2024
          =================================================================== -->
     <section class="lesson-block">
-      <h2>1. המבחן לדוגמה 2024 — שלוש השאלות + פתרון מודרך</h2>
+      <h2>1. המבחן לדוגמה 2024 — שלוש השאלות + הפתרון הרשמי</h2>
       <p>
         להלן שלוש שאלות המבחן לדוגמה, כל אחת מילה במילה מהמבחן. שים לב לתבנית: <strong>שאלה 1</strong> — מסלולים קצרים
         עם <span dir="ltr">k</span> קשתות שליליות; <strong>שאלה 2</strong> — נכון/לא-נכון על <span class="term" data-term="cut-property">משפט החתך</span> ל-<span class="term" data-term="mst">MST</span>;
@@ -161,13 +161,16 @@
 
       <p style="margin-top:1rem">
         <a href="../sources/example-exam-2024.pdf" download>⬇️ הורדת המבחן לדוגמה (PDF)</a>
+        &nbsp;·&nbsp;
+        <a href="../sources/sol-example-exam-2024.pdf" download>⬇️ הורדת הפתרון הרשמי של המרצה (PDF)</a>
       </p>
 
-      <aside class="callout callout-warn">
+      <aside class="callout callout-key">
         <p>
-          <strong>שקיפות מלאה:</strong> קובץ המבחן לדוגמה מכיל <strong>רק את שלוש השאלות וההנחיות</strong> — <strong>אין בו פתרונות רשמיים</strong>.
-          הפתרונות המודרכים למטה הם <strong>כיווני פתרון מבוססי-קורס</strong> (מסתמכים על המשפטים והאלגוריתמים שנלמדו),
-          ולא תמליל רשמי. את המשפטים והאלגוריתמים המלאים תמצא בעמודי היחידות המתאימות.
+          <strong>הפתרון הרשמי של המרצה זמין כעת.</strong> לצד שלוש השאלות מצורף <strong>הפתרון הרשמי המלא</strong>
+          (<span dir="ltr">sol-example-exam-2024.pdf</span>, 4 עמודים) — כולל הסריקות המקוריות עם כל השרטוטים והסימונים.
+          תחת כל שאלה יש כפתור <strong>"הצג פתרון רשמי"</strong> ובו הסריקה הרשמית ותמליל נאמן שלה.
+          מתחתיו נשמר גם <strong>ההסבר המודרך שלנו</strong>, המסומן במפורש כ<em>לא</em> הפתרון הרשמי — ככלי עזר בלבד.
         </p>
       </aside>
 
@@ -177,9 +180,65 @@
         תאר אלגוריתם יעיל למציאת מסלולים קצרים ביותר ממקור נתון אם ידוע כי בגרף הקלט יש רק <span dir="ltr">k</span>
         קשתות בעלות משקל שלילי (ללא מעגלים שליליים).
       </blockquote>
+
       <div class="reveal">
-        <button class="reveal-btn" type="button" aria-expanded="false">כיוון פתרון מודרך</button>
+        <button class="reveal-btn" type="button" aria-expanded="false">הצג פתרון רשמי</button>
         <div class="reveal-body" hidden>
+          <figure class="pdf-figure">
+            <img src="../assets/pdf-figures/homework/sol-example-exam-2024-p01.png" alt="הפתרון הרשמי" loading="lazy">
+            <figcaption>הפתרון הרשמי — sol-example-exam-2024.pdf עמ' 1</figcaption>
+          </figure>
+
+          <p><strong>אינטואיציה (מילה במילה מהמקור):</strong></p>
+          <blockquote>
+            <span class="term" data-term="dijkstra">דייקסטרה</span> עובד רק על קשתות עם משקלים אי-שליליים, לכן, על מנת להשתמש בדייקסטרה
+            נצטרך לשנות את הקלט כך שלא יהיו קשתות עם משקלים שליליים בגרף.
+          </blockquote>
+
+          <p><strong>פתרון — פסאודו-קוד (כלשונו מהמקור):</strong></p>
+          <pre dir="ltr">FIND-SHORTEST-PATH(G, w, s, k)                total O((k+1)(V+E)logE)
+1. E' ← E[G] \ k                              // Θ(E)
+2. G' ← (V, E')                               // Θ(V+E)
+3. d's0 ← DIJKSTRA(G', w, s)                  // O(V²)/O((V+E)logE)
+4. for i ← i to |K|                           // O(k)
+5.    do (u,v) ← K[i]
+6.       d'vi ← DIJKSTRA(G', w, v)            // O(V²)/O((V+E)logE)
+7.       for each vertex ∈ V[G]               // O(V)
+8.          do d'si[vertex] ← min(d'si-1[vertex], d'si-1[u] + w(u,v) + d'vi[vertex])</pre>
+
+          <p><strong>נכונות (מילה במילה מהמקור):</strong></p>
+          <blockquote>
+            <p>
+              נרצה להראות שהאלגוריתם הוא אלגוריתם יעיל המוצא מסלולים קצרים ביותר ממקור נתון בהינתן שיש
+              <span dir="ltr">k</span> קשתות בעלות משקל שלילי (ללא מעגלים שליליים).
+            </p>
+            <p>נוכיח באינדוקציה על <span dir="ltr">k</span>:</p>
+            <p>
+              <strong>בסיס: <span dir="ltr">k=1</span>.</strong> הוכחנו בתרגיל בית 5 את הנכונות עבור <span dir="ltr">k=1</span>.
+              לפי תכונת תת-המבנה האופטימלי של מסלולים קצרים ביותר, תת-מסלול של מסלול קצר ביותר הוא קצר ביותר,
+              ולכן מתקיים <span dir="ltr">d's1[vi] = min(d's0[vi], d's0[u] + (u,v) + d'v1[vi])</span>.
+            </p>
+            <p>
+              <strong>צעד:</strong> נניח נכונות עבור <span dir="ltr">k-1</span> ונוכיח עבור <span dir="ltr">k</span>.
+              בכל איטרציה <span dir="ltr">i</span> ועבור כל קשת שלילית נעדכן את ערך השדה <span dir="ltr">d'si</span> עבור כל קדקוד
+              בהתחשב בערכים שחושבו באיטרציות הקודמות. באיטרציה <span dir="ltr">i=k</span> נקבל:
+            </p>
+            <p style="text-align:center"><span dir="ltr">d'sk[vi] = min(d'sk-1[vi], d'sk-1[u] + (u,v) + d'vk[vi])</span></p>
+            <p>
+              כלומר, המינימום בין המינימום שחושב עבור <span dir="ltr">k-1</span> הקשתות השליליות (שלא עובר בקשת ה-א) —
+              אשר לפי הנחת האינדוקציה הוא המסלול הקצר מקודקוד המקור <span dir="ltr">s</span> לשאר קודקודי הגרף —
+              לבין המסלול הקצר ביותר מקודקוד המקור <span dir="ltr">s</span> שכן עובר בקשת ה-א.
+            </p>
+            <p><strong>מ.ש.ל</strong></p>
+          </blockquote>
+          <p class="source-tag">הפתרון הרשמי — <span dir="ltr">sol-example-exam-2024.pdf עמ' 1</span></p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <button class="reveal-btn" type="button" aria-expanded="false">הסבר מודרך שלנו — לא הפתרון הרשמי</button>
+        <div class="reveal-body" hidden>
+          <aside class="callout callout-note"><p><strong>שים לב:</strong> זהו הסבר מודרך שלנו לחידוד ההבנה, <strong>לא</strong> הפתרון הרשמי. הפתרון הרשמי מופיע בכפתור שמעל.</p></aside>
           <p>
             <strong>הרעיון (מבוסס-קורס):</strong> <span class="term" data-term="dijkstra">Dijkstra</span> יעיל אך פוסל משקלים שליליים;
             <span class="term" data-term="bellman-ford">Bellman-Ford</span> מטפל בשליליים אך יקר — <span dir="ltr">Θ(|V|·|E|)</span>.
@@ -192,7 +251,7 @@
           <p><strong>נכונות:</strong> כל מסלול קצר ביותר עובר בכל היותר דרך <span dir="ltr">k</span> קשתות שליליות (אין מעגלים שליליים → אין חזרה),
             ולכן <span dir="ltr">k</span> "שכבות" של הרפיה מספיקות להתכנס לפי תכונת תת-המבנה האופטימלי.</p>
           <p><strong>סיבוכיות:</strong> <span dir="ltr">O(k·(E+V)log V)</span> — יעיל כאשר <span dir="ltr">k</span> קטן משמעותית מ-<span dir="ltr">|V|</span>.</p>
-          <p class="source-tag">בסיס: 05-dijkstra + 06-bellman-ford. הפתרון הרשמי אינו בקובץ המבחן.</p>
+          <p class="source-tag">בסיס להסבר המודרך: 05-dijkstra + 06-bellman-ford. הפתרון הרשמי המלא בכפתור שמעל.</p>
         </div>
       </div>
 
@@ -206,9 +265,54 @@
         עבור <span dir="ltr">A</span> החוצה את <span dir="ltr">(S,V-S)</span>. אזי, <span dir="ltr">(u,v)</span> היא קשת קלה עבור החתך.
         האם הפרופסור צודק? הוכח או הבא דוגמא נגדית.
       </blockquote>
+
       <div class="reveal">
-        <button class="reveal-btn" type="button" aria-expanded="false">כיוון פתרון מודרך</button>
+        <button class="reveal-btn" type="button" aria-expanded="false">הצג פתרון רשמי</button>
         <div class="reveal-body" hidden>
+          <figure class="pdf-figure">
+            <img src="../assets/pdf-figures/homework/sol-example-exam-2024-p02.png" alt="הפתרון הרשמי" loading="lazy">
+            <figcaption>הפתרון הרשמי — sol-example-exam-2024.pdf עמ' 2</figcaption>
+          </figure>
+
+          <p><strong>הגדרות (כלשונן מהמקור):</strong></p>
+          <ul>
+            <li>
+              <strong><span class="term" data-term="safe-edge">קשת בטוחה</span> —</strong> קשת <span dir="ltr">(u,v)</span> נקראת בטוחה עבור קבוצת קשתות
+              <span dir="ltr">A</span> שהיא חלק מעפ"מ כלשהו אם <span dir="ltr">A∪{(u,v)}</span> מוכלת בעפ"מ כלשהו.
+            </li>
+            <li>
+              <strong>קשת היא <span class="term" data-term="light-edge">קלה (light)</span></strong> אם משקלה מינימלי מבין הקשתות שחוצות את החתך.
+            </li>
+            <li>
+              <strong>חתך מכבד</strong> קבוצת קשתות <span dir="ltr">A</span> אם אף קשת ב-<span dir="ltr">A</span> לא חוצה את החתך.
+            </li>
+          </ul>
+
+          <p><strong>התשובה (כלשונה מהמקור):</strong> <strong>האם יכולה להיות קשת בטוחה שהיא לא קשת קלה? — כן.</strong></p>
+          <blockquote>
+            <p>
+              <span dir="ltr">(A,E)</span> — קשת בטוחה עבור <span dir="ltr">A</span> שהיא לא קשת קלה עבור החתך.
+            </p>
+            <p><strong>הדוגמה הנגדית כפי שצוירה במקור (עם <span dir="ltr">A={}</span>):</strong></p>
+            <ul>
+              <li>שלושה קדקודים: <span dir="ltr">A</span>, <span dir="ltr">B</span> (בשורה העליונה) ו-<span dir="ltr">E</span> (מתחת ל-<span dir="ltr">A</span>).</li>
+              <li>קשת <span dir="ltr">A—B</span> במשקל <span dir="ltr">1</span>; קשת <span dir="ltr">A—E</span> במשקל <span dir="ltr">2</span>.</li>
+              <li>קו החתך המקווקו (אלכסוני) חוצה את <strong>שתי</strong> הקשתות, כאשר <span dir="ltr">A={}</span> (הקבוצה ריקה).</li>
+              <li>
+                שתי הקשתות חוצות את החתך. הקשת הקלה היא <span dir="ltr">A—B</span> (משקל <span dir="ltr">1</span>), אך הקשת
+                <span dir="ltr">A—E</span> (משקל <span dir="ltr">2</span>) עדיין <strong>בטוחה</strong> עבור <span dir="ltr">A</span> —
+                כי היא מוכלת בעפ"מ כלשהו — ובכל זאת <strong>אינה קלה</strong>. לכן טענת הפרופסור אינה נכונה.
+              </li>
+            </ul>
+          </blockquote>
+          <p class="source-tag">הפתרון הרשמי — <span dir="ltr">sol-example-exam-2024.pdf עמ' 2</span></p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <button class="reveal-btn" type="button" aria-expanded="false">הסבר מודרך שלנו — לא הפתרון הרשמי</button>
+        <div class="reveal-body" hidden>
+          <aside class="callout callout-note"><p><strong>שים לב:</strong> זהו הסבר מודרך שלנו לחידוד ההבנה, <strong>לא</strong> הפתרון הרשמי. הפתרון הרשמי מופיע בכפתור שמעל.</p></aside>
           <p>
             <strong>המפתח — זהו היפוך המשפט:</strong> משפט החתך שנלמד אומר <em>קשת קלה ⇐ בטוחה</em>
             (<span class="term" data-term="light-edge">light edge</span> החוצה חתך המכבד את <span dir="ltr">A</span> היא <span class="term" data-term="safe-edge">safe edge</span>).
@@ -224,7 +328,7 @@
             <strong>מסקנה:</strong> הכיוון "בטוחה ⇐ קלה" אינו מובטח באופן כללי — כדאי לחפש דוגמה נגדית עם משקלים שווים על החתך
             (למשל משולש שכל קשתותיו במשקל זהה, כמו בדוגמאות תרגיל 3 של <span class="term" data-term="mst">MST</span>).
           </p>
-          <p class="source-tag">בסיס: 04-mst-prim (משפט הקשת הבטוחה). הפתרון הרשמי אינו בקובץ המבחן.</p>
+          <p class="source-tag">בסיס להסבר המודרך: 04-mst-prim (משפט הקשת הבטוחה). הפתרון הרשמי המלא בכפתור שמעל.</p>
         </div>
       </div>
 
@@ -234,9 +338,105 @@
         תהי <span dir="ltr">(G,s,t,c)</span> רשת זרימה. הציעו אלגוריתם אשר מוצא קשת אשר אם מעלים את הקיבול שלה, ערך זרימת
         המקסימום עולה גם-כן, או מודיע כי אין קשת שכזו. הוכיחו נכונות ונתחו סיבוכיות.
       </blockquote>
+
       <div class="reveal">
-        <button class="reveal-btn" type="button" aria-expanded="false">כיוון פתרון מודרך</button>
+        <button class="reveal-btn" type="button" aria-expanded="false">הצג פתרון רשמי</button>
         <div class="reveal-body" hidden>
+          <figure class="pdf-figure">
+            <img src="../assets/pdf-figures/homework/sol-example-exam-2024-p03.png" alt="הפתרון הרשמי" loading="lazy">
+            <figcaption>הפתרון הרשמי — sol-example-exam-2024.pdf עמ' 3</figcaption>
+          </figure>
+          <figure class="pdf-figure">
+            <img src="../assets/pdf-figures/homework/sol-example-exam-2024-p04.png" alt="הפתרון הרשמי" loading="lazy">
+            <figcaption>הפתרון הרשמי — sol-example-exam-2024.pdf עמ' 4</figcaption>
+          </figure>
+
+          <p><strong>אינטואיציה — ייתכנו כמה מקרים (מילה במילה מהמקור):</strong></p>
+          <ol>
+            <li>
+              אם קיים בגרף חתך מינימלי <strong>יחיד</strong> — העלאת קיבול קשת כלשהי בחתך תגדיל את ערך הזרימה המקסימלית.
+              לפי משפט <span class="term" data-term="max-flow-min-cut">זרימה מקסימלית – חתך מינימלי</span>, הזרימה המקסימלית שווה
+              לקיבול החתך המינימלי בגרף, ולכן הגדלת קיבול החתך תגדיל את ערך הזרימה המקסימלית.
+            </li>
+            <li>
+              אם קיימים לפחות שני חתכים מינימליים בגרף, אך לכולם יש <strong>קשת משותפת</strong> — העלאת הקיבול שלה תגדיל
+              את ערך הזרימה המקסימלית.
+            </li>
+            <li>
+              אם קיימים לפחות שני חתכים מינימליים <strong>זרים</strong> בגרף — אי אפשר למצוא קשת שתגדיל את ערך הזרימה,
+              אשר תישאר שווה לקיבול החתך המינימלי שקיבולי הקשתות בו נשארו זהים.
+            </li>
+          </ol>
+
+          <p><strong>פסאודו-קוד (כלשונו מהמקור):</strong></p>
+          <pre dir="ltr">find_minimum_cut (Gf, s)
+1. BFS(Gf, s)
+2. S ← ∅
+3. T ← ∅
+2. for v ∈ Gf
+3.    do if d[v] ≠ ∞
+4.          S ← S ∪ v
+5.       else T ← T ∪ v
+6. return (S,T)
+
+
+find_improvement_edge(G, s, t, c):
+1. Gf ← Edmons-Karp(G, s ,t, c)               //O(|E|²|V|)
+2. max_flow ← f(s,t)                          //O(1)
+3. minimum_cut ← find_minimum_cut (G, s)      //O(|E| + |V|)
+4. for e ∈ minimum_cut                        //O(|E|)
+5.    do cf[e] ← cf[e] + 1                     //O(1)
+6.       G'f ← Edmons-Karp(G, s ,t, c)         //O(|E|²|V|)
+7.       if f(s,t) > max_flow                  //O(1)
+8.          return e                           //O(1)
+9. return NIL                                  //O(1)
+עלות: O(|E|³|V|)</pre>
+
+          <p><strong>נכונות (מילה במילה מהמקור):</strong></p>
+          <blockquote>
+            <p>
+              נרצה להראות כי האלגוריתם אכן מוצא קשת אשר אם מעלים את הקיבול שלה, ערך זרימת המקסימום עולה, או מודיע כי לא קיימת.
+            </p>
+            <p>
+              בשורות <span dir="ltr">1-3</span> האלגוריתם יריץ את האלגוריתם של אדמונס-קרף, שנכונותו הוכחה בהרצאה,
+              וימצא את החתך המינימלי בגרף.
+            </p>
+            <p>
+              לפי משפט <strong>זרימה מקסימלית – חתך מינימלי</strong>, הזרימה המקסימלית שווה לקיבול החתך המינימלי בגרף,
+              ולכן הגדלת קיבול החתך המינימלי תגדיל את ערך הזרימה המקסימלית.
+            </p>
+            <p>ייתכנו 3 מקרים:</p>
+            <ol>
+              <li>בגרף יש חתך מינימלי יחיד.</li>
+              <li>בגרף יש לפחות שני חתכים מינימליים, אך לכולם לפחות קשת אחת משותפת.</li>
+              <li>בגרף יש לפחות שני חתכים מינימליים <strong>זרים</strong>.</li>
+            </ol>
+            <p>
+              <strong>מקרה 1:</strong> אם בגרף הנתון חתך מינימלי יחיד, לפי משפט זרימה מקסימלית – חתך מינימלי, הגדלת קיבול
+              כל קשת תגדיל את קיבול החתך המינימלי ובכך את הזרימה, ולכן כבר באיטרציה הראשונה של הלולאה שבשורות
+              <span dir="ltr">4-6</span>, ערך הזרימה <span dir="ltr">G'</span> שיחזור מהאלגוריתם יהיה גדול מערך הזרימה הקודם
+              <span dir="ltr">G</span>, והאלגוריתם יחזיר את הקשת בשורה <span dir="ltr">8</span>.
+            </p>
+            <p>
+              <strong>מקרה 2:</strong> אם בגרף הנתון יש לפחות שני חתכים מינימליים אך לכולם לפחות קשת אחת משותפת, במהלך אחת
+              האיטרציות בלולאה שבשורות <span dir="ltr">4-6</span>, לאחר שהאלגוריתם יעלה את קיבול אחת הקשתות — הקשת המשותפת —
+              מאלגוריתם אדמונס-קרף תחזור זרימה <span dir="ltr">G'</span> שערכה גדול מערך הזרימה הקודם <span dir="ltr">G</span>,
+              והאלגוריתם יחזיר קשת זו בשורה <span dir="ltr">8</span>.
+            </p>
+            <p>
+              <strong>מקרה 3:</strong> אם בגרף יש לפחות שני חתכים מינימליים זרים, עבור כל קשת בחתך שיימצא, כשהאלגוריתם יריץ
+              את אדמונס-קרף עבור הקיבול החדש, ערך הזרימה <span dir="ltr">G'</span> לא יהיה גדול יותר מערך <span dir="ltr">G</span>,
+              לכן האלגוריתם לא ייכנס לתנאי שבשורה <span dir="ltr">7</span>, ויחזיר שלא קיימת קשת כזו, בשורה <span dir="ltr">9</span>.
+            </p>
+          </blockquote>
+          <p class="source-tag">הפתרון הרשמי — <span dir="ltr">sol-example-exam-2024.pdf עמ' 3–4</span></p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <button class="reveal-btn" type="button" aria-expanded="false">הסבר מודרך שלנו — לא הפתרון הרשמי</button>
+        <div class="reveal-body" hidden>
+          <aside class="callout callout-note"><p><strong>שים לב:</strong> זהו הסבר מודרך שלנו לחידוד ההבנה, <strong>לא</strong> הפתרון הרשמי. הפתרון הרשמי מופיע בכפתור שמעל.</p></aside>
           <p>
             <strong>שים לב:</strong> זו <strong>בדיוק שאלה 1 מתרגיל הבית של רשתות זרימה</strong> (ראה מאגר התרגילים למטה, נושא זרימה),
             שם מופיע הפתרון הרשמי המלא. תמצית:
