@@ -600,3 +600,17 @@
     }
   });
 })();
+
+/* ---------- floating Study Hub home button (injected on every page) ---------- */
+(function () {
+  try {
+    var inTopics = location.pathname.indexOf("/topics/") !== -1;
+    var a = document.createElement("a");
+    a.className = "hub-home";
+    a.href = (inTopics ? "../../" : "../") + "index.html";
+    a.title = "חזרה ל-Study Hub";
+    a.setAttribute("aria-label", "חזרה ל-Study Hub");
+    a.textContent = "🏠";
+    (document.body || document.documentElement).appendChild(a);
+  } catch (e) {}
+})();
