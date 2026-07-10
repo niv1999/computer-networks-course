@@ -8,6 +8,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style.css">
+<style>
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px;margin-top:14px}
+.res-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.res-card .res-title{font-weight:700;font-size:.98rem;line-height:1.45}
+.res-card .res-meta{color:var(--ink-soft);font-size:.82rem;display:flex;gap:10px;flex-wrap:wrap}
+.res-card .res-meta code{direction:ltr;unicode-bidi:isolate;font-size:.78rem;overflow-wrap:anywhere}
+.res-actions{display:flex;gap:8px;margin-top:auto;padding-top:6px}
+.res-actions a{flex:1;text-align:center;text-decoration:none;font-weight:600;font-size:.88rem;
+  padding:7px 10px;border-radius:8px;border:1px solid var(--line);color:var(--ink);background:var(--surface-2)}
+.res-actions a:first-child{background:var(--accent);border-color:var(--accent);color:#fff}
+.res-actions a:hover{filter:brightness(1.05)}
+.res-count{color:var(--ink-soft);font-size:.85rem;margin-top:4px}
+</style>
 </head>
 <body class="unit-1" data-module="resources">
   <button class="nav-toggle" aria-label="פתח תפריט">☰</button>
