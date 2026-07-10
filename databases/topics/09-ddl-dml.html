@@ -76,15 +76,19 @@
       <h2>DDL — הגדרת מבנה</h2>
       <p><strong>DDL (Data Definition Language)</strong> מגדיר את מבנה המסד:</p>
 <pre dir="ltr"><code>CREATE TABLE employee (
-  emp_id     INT PRIMARY KEY,
+  emp_id     INT PRIMARY KEY AUTO_INCREMENT,
   first_name VARCHAR(50) NOT NULL,
   salary     DECIMAL(10,2),
   dept_id    INT,
   FOREIGN KEY (dept_id) REFERENCES department(dept_id)
 );
 
-ALTER TABLE employee ADD COLUMN email VARCHAR(100);
-DROP TABLE employee;   -- מוחק את הטבלה כולה</code></pre>
+ALTER TABLE employee ADD email VARCHAR(100);   -- הוספת עמודה
+ALTER TABLE employee DROP email;               -- הורדת עמודה
+ALTER TABLE employee MODIFY first_name VARCHAR(80);  -- שינוי טיפוס
+DROP TABLE employee;   -- מוחק את הטבלה כולה</code></pre>      <aside class="callout callout-note">      <p><code>AUTO_INCREMENT</code> נותן למפתח ערך רץ אוטומטי (1,2,3…) בכל הוספה. לצפייה במבנה טבלה: <code>DESCRIBE tablename;</code> (מציג שם עמודה, טיפוס, Null, Key, Default). אפשר גם ליצור טבלה משאילתה: <code>CREATE TABLE t AS SELECT …;</code></p>
+</aside>
+
       <p class="source-tag">מקור: <span dir="ltr">ddl.sql</span></p>
     </section>
 

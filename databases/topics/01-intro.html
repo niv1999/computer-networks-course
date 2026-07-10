@@ -82,10 +82,21 @@
     </section>
 
     <section class="lesson-block">
-      <h2>למה לא סתם קבצים?</h2>
-      <p>לפני מסדי נתונים, נתונים נשמרו בקבצים נפרדים לכל אפליקציה. הבעיות: <strong>כפילות</strong> (אותו מידע בכמה מקומות), <strong>חוסר עקביות</strong> (עדכון במקום אחד ולא באחר), קושי בשליפות מורכבות, ובעיות גישה בו-זמנית. מסד נתונים רלציוני פותר זאת עם מודל אחיד, שאילתות והבטחת שלמות.</p>
+      <h2>למה לא סתם קבצים? (File Processing System)</h2>
+      <p>לפני מסדי נתונים השתמשו ב<strong>מערכת עיבוד קבצים (file processing system)</strong>: כל אפליקציה (ספרייה, מבחנים, רישום) מגדירה ומנהלת את קבצי הנתונים שלה בנפרד. הבעיות: <strong>כפילות</strong> (אותו מידע בכמה מקומות), <strong>חוסר עקביות</strong> (עדכון במקום אחד ולא באחר), קושי בשליפות מורכבות, ובעיות גישה בו-זמנית.</p>
+      <p><strong>יתרונות מסד הנתונים:</strong> גישה יעילה, «עצמאות» ואמינות הנתונים, אבטחה, מבנה ניהול אחיד, גישה מרובת-משתמשים, והתאוששות מתקלה (למשל הפסקת חשמל).</p>
 
       <p class="source-tag">מקור: <span dir="ltr">db_intro.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>מבנה והיררכיה: Database ← Schema ← Table</h2>
+      <p>מסד נתונים בנוי בהיררכיה: <strong>Database</strong> מכיל <strong>Schema</strong> (המתאר את המבנה), שמכיל <strong>Tables</strong> (הנתונים עצמם). סכימה יכולה להכיל גם:</p>
+      <ul><li><strong>index files</strong> — קובצי אינדקס לשליפה מהירה של נתונים.</li><li><strong>stored procedures, constraints, triggers</strong> — ועוד אובייקטים שנלמד בהמשך.</li></ul>
+      <aside class="callout callout-note">      <p><strong>אינדקס (index)</strong> מזרז חיפוש על עמודה (כמו אינדקס בספר), במחיר אחסון וזמן עדכון. מפתח ראשי מקבל אינדקס אוטומטית.</p>
+</aside>
+
+      <p class="source-tag">מקור: <span dir="ltr">overview.pdf</span></p>
     </section>
 
     <section class="lesson-block">

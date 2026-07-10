@@ -310,16 +310,37 @@
   {
     "slug": "create-table",
     "term": "CREATE TABLE",
-    "he": "יוצר טבלה עם עמודות, טיפוסים ואילוצים.",
+    "he": "יוצר טבלה עם עמודות, טיפוסים ואילוצים; אפשר גם CREATE TABLE t AS SELECT.",
     "category": "SQL",
     "moduleId": "09-ddl-dml"
   },
   {
     "slug": "alter-table",
     "term": "ALTER TABLE",
-    "he": "משנה מבנה טבלה קיימת (הוספת/שינוי עמודה).",
+    "he": "משנה מבנה טבלה קיימת: ADD / DROP / MODIFY עמודה.",
     "category": "SQL",
     "moduleId": "09-ddl-dml"
+  },
+  {
+    "slug": "auto-increment",
+    "term": "AUTO_INCREMENT",
+    "he": "נותן למפתח ערך רץ אוטומטי (1,2,3…) בכל הוספה.",
+    "category": "SQL",
+    "moduleId": "09-ddl-dml"
+  },
+  {
+    "slug": "describe",
+    "term": "DESCRIBE",
+    "he": "מציג את מבנה הטבלה — שם עמודה, טיפוס, Null, Key, Default.",
+    "category": "SQL",
+    "moduleId": "09-ddl-dml"
+  },
+  {
+    "slug": "index",
+    "term": "Index",
+    "he": "קובץ אינדקס לזירוז חיפוש על עמודה; מפתח ראשי מקבל אינדקס אוטומטית.",
+    "category": "יסודות ומודל",
+    "moduleId": "01-intro"
   },
   {
     "slug": "truncate",

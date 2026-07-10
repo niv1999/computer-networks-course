@@ -97,8 +97,16 @@
     </section>
 
     <section class="lesson-block">
+      <h2>דרגת הקשר וקשר רקורסיבי</h2>
+      <ul><li><strong>דרגת הקשר (degree):</strong> רוב הקשרים הם <strong>בינאריים</strong> (בין 2 ישויות). קיימים גם קשרים בין יותר משתי ישויות (<strong>ternary</strong>) — נדירים אך אפשריים.</li><li><strong>קשר רקורסיבי (recursive/unary):</strong> ישות מקושרת לעצמה. הדוגמה הקלאסית — עובד «עובד תחת» מנהל (שגם הוא עובד), עם התפקידים manager ו-worker.</li></ul>
+      <p>בהמרה למודל רלציוני, קשר רקורסיבי הופך ל<strong>מפתח זר המצביע על אותה טבלה</strong>: למשל <span dir="ltr">employee(emp_id, name, manager_id→employee)</span>, כאשר <code>manager_id</code> יהיה NULL לעובד ללא מנהל.</p>
+
+      <p class="source-tag">מקור: <span dir="ltr">database_design.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
       <h2>ישות חלשה</h2>
-      <p><strong>ישות חלשה (Weak Entity)</strong> אינה יכולה להזדהות לבד — היא תלויה בישות אחרת («חזקה») לזיהוי. לדוגמה: «תלוי» (dependent) של עובד מזוהה רק בצירוף מזהה העובד + שמו. בדיאגרמה מסומנת במלבן כפול, והמפתח שלה חלקי (מפתח מבחין) בשילוב מפתח הישות החזקה.</p>
+      <p><strong>ישות חלשה (Weak Entity)</strong> אינה יכולה להזדהות לבד — היא תלויה בישות אחרת («חזקה») לזיהוי. לדוגמה: «תלוי» (dependent) של עובד מזוהה רק בצירוף מזהה העובד + שמו. בדיאגרמה מסומנת במלבן כפול, והמפתח שלה חלקי (מפתח מבחין) בשילוב מפתח הישות החזקה. (בדיאגרמת ER: תכונה רב-ערכית = אליפסה כפולה, תכונה נגזרת = אליפסה מקווקוות.)</p>
 
       <p class="source-tag">מקור: <span dir="ltr">database_design.pdf</span></p>
     </section>

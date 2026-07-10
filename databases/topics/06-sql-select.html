@@ -79,7 +79,7 @@
 FROM   table_name         -- מאיזו טבלה
 WHERE  condition          -- אילו שורות
 ORDER BY column [ASC|DESC] -- מיון
-LIMIT  n;                 -- כמה שורות</code></pre>      <p><code>SELECT *</code> מחזיר את כל העמודות. <code>DISTINCT</code> מסיר שורות כפולות מהתוצאה.</p>
+LIMIT  n;                 -- כמה שורות</code></pre>      <p><code>SELECT *</code> מחזיר את כל העמודות; רשימת עמודות מופרדת בפסיקים בוחרת ספציפיות. <code>DISTINCT</code> מסיר שורות כפולות מהתוצאה. אפשר לתת <strong>כינוי (alias)</strong> לעמודה: <code>SELECT first_name fname FROM actor</code> (או עם <code>AS</code>). הערות ב-SQL: <code>-- הערה עד סוף השורה</code>.</p>
       <aside class="callout callout-key">      <p>סדר <strong>כתיבה</strong>: SELECT → FROM → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT. סדר <strong>ביצוע</strong> לוגי מתחיל דווקא מ-FROM ואז WHERE, ורק בסוף SELECT ו-ORDER BY.</p>
 </aside>
 
