@@ -86,11 +86,11 @@
 
       <h3>דוגמה מהעולם: תצלום של הזמנה בחנות</h3>
       <p>נניח מחלקה <span dir="ltr">Customer</span> (עם תכונות <span dir="ltr">name, email</span>) ומחלקה <span dir="ltr">Order</span> (עם <span dir="ltr">date, total</span>). תרשים <em>מחלקות</em> יראה את התבנית; תרשים <em>אובייקטים</em> מצלם רגע אחד קונקרטי — עם ערכים אמיתיים:</p>
-      <pre dir="ltr"><code>alice : Customer          o1 : Order
-  name  = "Alice Cohen"     date  = "2026-07-14"
-  email = "alice@shop.com"  total = 249.90
-        │
-        └────── places ──────┘   (link, לא association)</code></pre>
+            <div class="obj-diagram">
+        <div class="obj-box"><div class="obj-name">alice : Customer</div><div class="obj-attr">name = "Alice Cohen"</div><div class="obj-attr">email = "alice@shop.com"</div></div>
+        <div class="obj-link">—— places ——&gt;</div>
+        <div class="obj-box"><div class="obj-name">o1 : Order</div><div class="obj-attr">date = "2026-07-14"</div><div class="obj-attr">total = 249.90</div></div>
+      </div>
       <p>שימו לב להבדל: ב-Class Diagram כתוב <code>total : double</code> (טיפוס); כאן כתוב <code>total = 249.90</code> (ערך ממשי). הקו בין <code>alice</code> ל-<code>o1</code> הוא <strong>link</strong> — מופע קונקרטי של האסוציאציה «places» מתרשים המחלקות. שם המופע מודגש עם קו תחתון: <code>alice : Customer</code>.</p>
       <aside class="callout callout-note">
         <p><strong>העשרה — הכלי של המרצה (PlantUML):</strong> בתרגילים המרצה מצייר תרשימים ב-<span dir="ltr">PlantUML</span> (שפת טקסט שמייצרת תרשים UML). למשל תרחיש מלון: <code>alice : Guest</code> מחוברת ל-<code>b1 : Booking</code> עם <code>status = "confirmed"</code>, <code>checkIn = "2026-08-01"</code>, וקישורים לחדרים ולפריטי מיני-בר — כל אחד אובייקט עם ערכים משלו.</p>
@@ -113,24 +113,15 @@
 
       <h3>דוגמה קנונית: ארכיטקטורת שכבות</h3>
       <p>הדוגמה הקלאסית היא מערכת מחולקת ל-4 שכבות, כשכל חבילה תלויה רק בזו שמתחתיה — <strong>שרשרת תלות חד-כיוונית</strong>:</p>
-      <pre dir="ltr"><code>┌─────────────┐
-│     UI      │  שכבת הצגה — מסכים, כפתורים
-└──────┬──────┘
-       │ «use»          (חץ מקווקו: UI תלוי ב-Application)
-       ▼
-┌─────────────┐
-│ Application │  תזמור תרחישי-שימוש (use cases)
-└──────┬──────┘
-       │ «use»
-       ▼
-┌─────────────┐
-│   Domain    │  לוגיקה עסקית מרכזית (המחלקות האמיתיות)
-└──────┬──────┘
-       │ «use»
-       ▼
-┌─────────────┐
-│  Database   │  שמירה/שליפה (persistence)
-└─────────────┘</code></pre>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+flowchart TD
+  UI["UI — שכבת הצגה"] -->|"«use»"| APP["Application — תזמור use cases"]
+  APP -->|"«use»"| DOM["Domain — לוגיקה עסקית"]
+  DOM -->|"«use»"| DB["Database — persistence"]
+        </pre>
+        <figcaption>תרשים Package — ארכיטקטורת שכבות: כל חבילה תלויה רק בזו שמתחתיה (חץ «use» מקווקו). התלות חד-כיוונית — זה לב הארכיטקטורה הנקייה.</figcaption>
+      </figure>
       <aside class="callout callout-key">
         <p><strong>כלל מבחן (Q34):</strong> חץ תלות <code>«use»</code> מ-A ל-B פירושו <strong>ש-A תלוי באלמנטים שבתוך B</strong> — A משתמש במחלקות של B, לא להפך. אז <span dir="ltr">UI «use» Application</span> אומר: UI מכיר את Application ומשתמש בו; Application <em>לא</em> יודע על UI. הכיוון הוא הכל.</p>
       </aside>
@@ -157,11 +148,16 @@
 
       <h3>דוגמה מהעולם: מפת מיקרו-שירותים של חנות אונליין</h3>
       <p>מערכת e-commerce מפורקת לרכיבים, כל אחד נפרס בנפרד ומדבר עם השאר רק דרך ממשקים:</p>
-      <pre dir="ltr"><code> Frontend ──○ requires ──⊂  API Gateway
-                              │ provides IOrders ○──
-                              │ requires ──⊂  Auth Service   ○── IAuth
-                              │ requires ──⊂  Payment Service ○── IPay
-                                                    │ requires ──⊂ «database» Transactions ○── IDB</code></pre>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+flowchart LR
+  FE["Frontend"] -->|"דורש IOrders"| API["API Gateway"]
+  API -->|"דורש IAuth"| AUTH["Auth Service"]
+  API -->|"דורש IPay"| PAY["Payment Service"]
+  PAY -->|"דורש IDB"| DB["«database» Transactions"]
+        </pre>
+        <figcaption>תרשים Component — רכיבים וממשקים: כל חץ = רכיב שדורש (socket, חצי-עיגול) ממשק שרכיב אחר מספק (lollipop, סוכריה-על-מקל). כך מחליפים רכיב בלי לגעת בשאר.</figcaption>
+      </figure>
       <ul>
         <li><strong>Frontend</strong> מספק את ה-UI ו<em>נדרש</em> (socket ⊂) להתחבר לממשק שה-<strong>API Gateway</strong> <em>מספק</em> (lollipop ○).</li>
         <li><strong>Auth Service</strong> מספק את הממשק <span dir="ltr">IAuth</span> (התחברות/הרשאות); <strong>Payment Service</strong> מספק <span dir="ltr">IPay</span> (חיוב).</li>
@@ -190,12 +186,23 @@
 
       <h3>דוגמה מהעולם: פריסת אפליקציית ווב</h3>
       <p>אותה חנות אונליין — אבל עכשיו השאלה היא <em>איפה כל דבר רץ בפועל</em>, על איזו חומרה:</p>
-      <pre dir="ltr"><code>┌──────────────────┐   HTTPS   ┌──────────────────┐   JDBC   ┌──────────────────┐
-│ «device»         │◄─────────►│ «device»         │◄────────►│ «device»         │
-│  Client Browser  │           │  WebServer node  │          │  DB Server node  │
-│                  │           │  ─ shop.war      │          │  ─ orders.db     │
-│                  │           │  (artifact)      │          │  (artifact)      │
-└──────────────────┘           └──────────────────┘          └──────────────────┘</code></pre>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+flowchart LR
+  subgraph C["«device» Client"]
+    B["browser.exe"]
+  end
+  subgraph W["«device» WebServer"]
+    WA["shop.war (artifact)"]
+  end
+  subgraph DBn["«device» DB Server"]
+    DA["orders.db (artifact)"]
+  end
+  C -->|"HTTPS"| W
+  W -->|"JDBC"| DBn
+        </pre>
+        <figcaption>תרשים Deployment — פריסה פיזית: כל node (מלבן «device») הוא חומרה, ה-artifacts (shop.war, orders.db) הם מה שרץ עליו, והחצים המסומנים בפרוטוקול (HTTPS/JDBC) הם ערוצי התקשורת.</figcaption>
+      </figure>
       <ul>
         <li><strong>Node</strong> = חתיכת חומרה (קופסה תלת-ממדית): הדפדפן, שרת הווב, שרת מסד-הנתונים.</li>
         <li><strong>Artifact</strong> = הפריט המוחשי שנפרס על ה-node: <code>shop.war</code> (קובץ ההרצה של האפליקציה) רץ על ה-WebServer; <code>orders.db</code> יושב על ה-DB Server.</li>

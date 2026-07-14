@@ -636,3 +636,23 @@
   paint();
   document.body.appendChild(btn);
 })();
+
+/* ---- Mermaid diagrams: lazy-load from CDN only when a page has .mermaid blocks ---- */
+(function () {
+  if (!document.querySelector('.mermaid')) return;
+  var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs')
+    .then(function (mod) {
+      mod.default.initialize({
+        startOnLoad: true,
+        theme: dark ? 'dark' : 'neutral',
+        securityLevel: 'loose',
+        fontFamily: 'JetBrains Mono, Consolas, monospace'
+      });
+      mod.default.run();
+    })
+    .catch(function () {
+      /* offline / blocked — leave the raw text (still legible) */
+      document.querySelectorAll('.mermaid').forEach(function (el) { el.classList.add('mermaid-fallback'); });
+    });
+})();

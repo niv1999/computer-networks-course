@@ -76,13 +76,6 @@
     </header>
 
     <section class="lesson-block">
-      <h2>מטרת עקרונות העיצוב</h2>
-      <p><strong>עקרונות עיצוב</strong> הם הנחיות לבניית תוכנה <strong>ניתנת לתחזוקה, גמישה וברת-הרחבה</strong>. הם מנחים את החלטות התכן — <strong>לפני</strong> ולצד בחירת תבנית עיצוב ספציפית. מושגי יסוד: <strong>coupling</strong> (צימוד — כמה מחלקות תלויות זו בזו; רוצים <em>נמוך</em>) ו-<strong>cohesion</strong> (לכידות — כמה מחלקה ממוקדת בתפקיד אחד; רוצים <em>גבוה</em>).</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Software-Design.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
       <h2>יסודות תכנות מונחה-עצמים — ארבעת העמודים <span dir="ltr">(4 Pillars of OOP)</span></h2>
       <p>לפני שנדבר על עקרונות עיצוב, צריך את ארבעת עמודי-התווך של תכנות מונחה-עצמים <span dir="ltr">(Object-Oriented Programming, OOP)</span>. כל אחד מהם נבחן במבחן:</p>
 
@@ -156,7 +149,6 @@ class Car { Engine* engine; };   // ✓ Car HAS-A Engine — גמיש, ניתן 
     <section class="lesson-block">
       <h2>מושגי יסוד נוספים</h2>
       <ul>
-        <li><strong>קישור דינמי <span dir="ltr">(Dynamic Binding)</span>:</strong> הקישור בין קריאה למתודה לבין המימוש נקבע בזמן ריצה לפי הטיפוס האמיתי — הבסיס לרב-צורתיות. דוגמה: <code>animal-&gt;makeSound()</code> נובח או מיילל לפי מה ש-<code>animal</code> באמת מצביע עליו.</li>
         <li><strong>גנריות <span dir="ltr">(Genericity)</span> / תבניות <span dir="ltr">(Templates)</span>:</strong> כתיבת קוד שעובד על טיפוסים שונים בלי לשכפל אותו — הטיפוס הוא פרמטר. דוגמה: <code>max&lt;T&gt;</code> אחד עובד ל-<span dir="ltr">int</span>, <span dir="ltr">double</span> ו-<span dir="ltr">string</span>.
       <pre dir="ltr"><code>template&lt;typename T&gt;
 T max(T a, T b){ return a &gt; b ? a : b; }   // עובד לכל טיפוס שתומך ב-&gt;</code></pre></li>
@@ -167,7 +159,8 @@ T max(T a, T b){ return a &gt; b ? a : b; }   // עובד לכל טיפוס שת
     </section>
 
     <section class="lesson-block">
-      <h2>למה בכלל צריך עיצוב טוב?</h2>
+      <h2>למה צריך עיצוב טוב?</h2>
+      <p><strong>עקרונות עיצוב</strong> הם הנחיות לבניית תוכנה <strong>ניתנת לתחזוקה, גמישה וברת-הרחבה</strong>. הם מנחים את החלטות התכן — <strong>לפני</strong> ולצד בחירת תבנית עיצוב ספציפית. שני מדדי-איכות מרכזיים: <strong>coupling</strong> (צימוד — כמה מחלקות תלויות זו בזו; רוצים <em>נמוך</em>) ו-<strong>cohesion</strong> (לכידות — כמה מחלקה ממוקדת בתפקיד אחד; רוצים <em>גבוה</em>).</p>
       <p>עיצוב גרוע לא «נשבר» מיד — הוא מתנקם עם הזמן, ככל שהמערכת גדלה ומתחזקים אותה. אלה «ריחות התכן» <span dir="ltr">(design smells)</span> שמסמנים עיצוב רקוב:</p>
       <ul>
         <li><strong>נוקשות <span dir="ltr">(Rigidity)</span>:</strong> כל שינוי קטן גורר שרשרת שינויים במקומות רבים.</li>
@@ -183,32 +176,8 @@ T max(T a, T b){ return a &gt; b ? a : b; }   // עובד לכל טיפוס שת
 
     <section class="lesson-block">
       <h2>SOLID — חמשת העקרונות</h2>
+      <p>SOLID הוא ראשי-תיבות של חמישה עקרונות עיצוב שנועדו בדיוק כדי למנוע את «ריחות התכן» שלמעלה. במבט מהיר:</p>
       <ul><li><strong>S — Single Responsibility (אחריות יחידה):</strong> למחלקה צריכה להיות סיבה אחת ויחידה להשתנות.</li><li><strong>O — Open/Closed (פתוח/סגור):</strong> פתוח להרחבה, סגור לשינוי — מוסיפים התנהגות בלי לשנות קוד קיים.</li><li><strong>L — Liskov Substitution (החלפת ליסקוב):</strong> תת-טיפוס חייב להיות ניתן להחלפה בטיפוס-העל בלי לשבור את נכונות התוכנית.</li><li><strong>I — Interface Segregation (הפרדת ממשקים):</strong> עדיף כמה ממשקים קטנים וממוקדים מאשר ממשק אחד גדול וכללי.</li><li><strong>D — Dependency Inversion (היפוך תלות):</strong> להסתמך על הפשטות (abstractions), לא על מימושים קונקרטיים. מודולים ברמה גבוהה לא יתלו במודולים ברמה נמוכה.</li></ul>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise6-SOLIDExamples.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>דוגמאות להפרה ולתיקון</h2>
-      <aside class="callout callout-warn">      <p><strong>הפרת SRP:</strong> מחלקה <code>User</code> שגם שומרת נתונים, גם שולחת מייל, וגם מייצרת דוח — שלוש סיבות להשתנות. <strong>תיקון:</strong> לפצל ל-<code>User</code>, <code>EmailService</code>, <code>ReportGenerator</code>.</p>
-</aside>
-      <aside class="callout callout-note">      <p><strong>העשרה — DRY ו-KISS:</strong> «Don't Repeat Yourself» (הימנעו מכפילות קוד) ו-«Keep It Simple» (העדיפו פשטות) — כללי אצבע משלימים ל-SOLID.</p>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise6-SOLIDExamples.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>מי המציא את SOLID?</h2>
-      <aside class="callout callout-note">      <p><strong>העשרה — <span dir="ltr">Robert C. Martin (&quot;Uncle Bob&quot;)</span>:</strong> חמשת עקרונות SOLID רוכזו ונוסחו כראשי-תיבות על-ידי <span dir="ltr">Robert C. Martin</span>, המכונה <span dir="ltr">«Uncle Bob»</span> — מהדמויות המשפיעות בעולם הנדסת-התוכנה. שאלת טריוויה קלה במבחן.</p>
-</aside>
-      <aside class="callout callout-note">      <p><strong>העשרה — <span dir="ltr">Barbara Liskov</span>:</strong> ה-<span dir="ltr">L</span> — עקרון החלפת ליסקוב — קרוי על שם <span dir="ltr">Barbara Liskov</span>, פרופסורית ב-<span dir="ltr">MIT</span>, מהנשים הראשונות בארה&quot;ב עם דוקטורט במדעי-המחשב, יוצרת שפת <span dir="ltr">CLU</span> וזוכת פרס טיורינג <span dir="ltr">(2008)</span>.</p>
-</aside>
-      <p class="source-tag">מקור: <span dir="ltr">Exercise6-OtherUMLDiagramsAndSOLID.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>SOLID בקוד — לפני ואחרי</h2>
       <p>ההגדרות היבשות נחרתות רק כשרואים את ההפרה ואת התיקון. לכל עיקרון: הקוד הבעייתי, ומולו הקוד המתוקן.</p>
 
       <h3><span dir="ltr">S — Single Responsibility (Q3, Q26)</span></h3>
@@ -289,11 +258,8 @@ public:
   void save(Order o){ db.insert(o); }
 };
 // בהרכבה: OrderService svc(mysql);  — אפשר להחליף ל-PostgresDatabase בלי לגעת ב-OrderService</code></pre>
-      <p class="source-tag">מקור: <span dir="ltr">Exercise6-SOLIDExamples.pdf</span></p>
-    </section>
 
-    <section class="lesson-block">
-      <h2>מ-SOLID ל-OOP — מיפוי</h2>
+      <h3>מ-SOLID ל-OOP — על מה נשען כל עיקרון</h3>
       <p>כל עיקרון SOLID נשען על מנגנון OOP קונקרטי:</p>
       <ul>
         <li><strong><span dir="ltr">SRP</span></strong> ← <strong>לכידות <span dir="ltr">(cohesion)</span> ומודולריות:</strong> מחלקה ממוקדת = אחריות אחת.</li>

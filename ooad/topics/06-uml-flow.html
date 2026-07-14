@@ -84,28 +84,6 @@
       <p><strong>תרשים פעילות (Activity Diagram)</strong> מתאר <strong>זרימת עבודה ובקרה</strong> — פעולות, החלטות, פעילויות מקביליות והמעברים ביניהן. מעין תרשים זרימה (flowchart) מתקדם.</p>
       <ul><li><strong>התחלה:</strong> עיגול מלא ●. <strong>סיום:</strong> עיגול בתוך עיגול ◉.</li><li><strong>Action:</strong> מלבן מעוגל.</li><li><strong>Decision/Merge:</strong> מעוין ◇ עם תנאים (guards) על היציאות.</li><li><strong>Fork/Join:</strong> פס עבה — לפיצול/איחוד זרימות מקביליות.</li><li><strong>Swimlanes:</strong> «מסלולים» שמייחסים פעולות לאחראי (מחלקה/תפקיד).</li></ul>
       <p>שימוש: ניתוח ותכן — מידול תהליכים עסקיים ואלגוריתמים/לוגיקת מתודות מורכבת.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>State Diagram — מחזור חיים של אובייקט</h2>
-      <figure class="pdf-figure">
-        <img src="../assets/figures/uml-state.png" alt="תרשים State — מצבים, מעברים event[guard]/action, ומצב מורכב (Cooling)" loading="lazy">
-        <figcaption>תרשים State — מצבים, מעברים event[guard]/action, ומצב מורכב (Cooling)</figcaption>
-      </figure>
-      <p><strong>תרשים מצבים (State Diagram / Statechart)</strong> מתאר את <strong>מחזור החיים של אובייקט יחיד</strong> — כל המצבים שהוא יכול להיות בהם, והאירועים/תנאים שמפעילים מעברים ביניהם.</p>
-      <ul><li><strong>State:</strong> מלבן מעוגל (עם פעולות <code>entry/</code>, <code>exit/</code>).</li><li><strong>Transition:</strong> חץ מתויג <code>event [guard] / action</code>.</li><li><strong>Initial:</strong> עיגול מלא ●. <strong>Final:</strong> ◉.</li><li><strong>Composite state:</strong> מצב המכיל תת-מצבים.</li></ul>
-      <p>שימוש: תכן — אובייקטים בעלי התנהגות תלוית-מצב: רכיבי UI, פרוטוקולים, מחזור חיים של הזמנה, התקני חומרה.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Activity מול State — לא לבלבל</h2>
-      <aside class="callout callout-warn">      <ul><li><strong>Activity</strong> עוקב אחרי <strong>זרימת פעולות/תהליך</strong> (מה קורה, בסדר). מתאים לתהליך עסקי או אלגוריתם.</li><li><strong>State</strong> עוקב אחרי <strong>מצבי אובייקט</strong> והמעברים ביניהם (באיזה מצב הוא נמצא). מתאים למחזור חיים תלוי-אירועים.</li></ul>
-</aside>
-
       <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
     </section>
 
@@ -120,20 +98,24 @@
         <li><strong>Join</strong> (פס עבה) — שתי הזרימות המקבילות נפגשות ומתאחדות שוב לזרימה אחת. הזרימה ממתינה עד ש<strong>שתיהן</strong> הסתיימו.</li>
         <li><strong>Action: «סגור הזמנה»</strong> <span dir="ltr">(Close Order)</span>, ואז <strong>סיום</strong> — עיגול בתוך עיגול <span dir="ltr">◉</span>.</li>
       </ul>
-      <pre dir="ltr"><code>●  Receive Order
-        │
-      ┌─┴─┐  fork (bar)
-      │   │
- Fill Order   Send Invoice
-      │           │
-   ◇[rush?]       │
-   yes│ no│       │
-Overnight│Regular │
-      └─┬─┘       │
-      └───┬───────┘  join (bar)
-        Close Order
-          │
-          ◉</code></pre>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+flowchart TD
+  S(( )) --> RO[Receive Order]
+  RO --> FK[/fork/]
+  FK --> FO[Fill Order]
+  FK --> SI[Send Invoice]
+  FO --> R{rush?}
+  R -->|yes| OV[Overnight delivery]
+  R -->|no| RG[Regular delivery]
+  OV --> JN[/join/]
+  RG --> JN
+  SI --> JN
+  JN --> CO[Close Order]
+  CO --> E((( )))
+        </pre>
+        <figcaption>תרשים Activity — עיבוד הזמנה: ה-fork מפצל לשני זרמים מקבילים (מילוי הזמנה + הפקת חשבונית), החלטה [rush?] בוחרת סוג משלוח, וה-join מסנכרן לפני סגירה.</figcaption>
+      </figure>
       <aside class="callout callout-key">
         <strong>הכלל של Fork/Join:</strong> Fork פותח זרימות מקביליות, Join סוגר אותן ומסנכרן. Join אינו ממשיך עד שכל הזרימות שנכנסות אליו הגיעו — זה נקודת סנכרון. אל תבלבלו עם Decision/Merge (מעוין) שבוחר <strong>נתיב אחד</strong> מתוך כמה, בלי מקביליות.
       </aside>
@@ -154,25 +136,14 @@ Overnight│Regular │
     </section>
 
     <section class="lesson-block">
-      <h2>דוגמה מלאה: תרשים State למחזור חיים של הזמנה</h2>
-      <p>תרשים <span dir="ltr">State</span> מתאר את <strong>מחזור החיים של אובייקט <em>יחיד</em></strong> — כאן, אובייקט <code>Order</code> בודד. הוא מראה בכל רגע באיזה מצב ההזמנה נמצאת ואיזה אירוע מעביר אותה למצב הבא:</p>
-      <pre dir="ltr"><code>●
-│ placeOrder()
-▼
-[New] ──confirmPayment()──▶ [Paid] ──shipOrder()──▶ [Shipped]
-  │                           │                        │
-  │                           │                   deliverOrder()
-  │ cancelOrder()             │ cancelOrder()           ▼
-  ▼                           ▼                    [Delivered] ─▶ ◉
-[Cancelled] ─▶ ◉        [Cancelled] ─▶ ◉</code></pre>
-      <ul>
-        <li><strong>מצבים (States):</strong> <span dir="ltr">New</span> (נוצרה), <span dir="ltr">Paid</span> (שולמה), <span dir="ltr">Shipped</span> (נשלחה), <span dir="ltr">Delivered</span> (נמסרה), ו-<span dir="ltr">Cancelled</span> (בוטלה).</li>
-        <li><strong>מעברים (Transitions):</strong> כל חץ מתויג באירוע שמפעיל אותו — <code dir="ltr">placeOrder()</code>, <code dir="ltr">confirmPayment()</code>, <code dir="ltr">shipOrder()</code>, <code dir="ltr">deliverOrder()</code>, <code dir="ltr">cancelOrder()</code>.</li>
-        <li><strong>כמה נתיבים לסיום:</strong> הזמנה יכולה להגיע ל-<span dir="ltr">◉</span> דרך <span dir="ltr">Delivered</span> (הצלחה) או דרך <span dir="ltr">Cancelled</span> (ביטול מ-<span dir="ltr">New</span> או מ-<span dir="ltr">Paid</span>).</li>
-      </ul>
-      <aside class="callout callout-key">
-        <span class="badge">קריטי למבחן</span> תרשים <span dir="ltr">State</span> מתאר את מחזור החיים של <strong>אובייקט אחד בלבד</strong> בעל <strong>התנהגות תלוית-מצב</strong> (state-dependent behavior): אותה קריאת מתודה עשויה להתנהג אחרת בהתאם למצב. למשל <code dir="ltr">cancelOrder()</code> חוקית מ-<span dir="ltr">New/Paid</span>, אך ל<strong>א</strong> מ-<span dir="ltr">Shipped</span> — ההזמנה כבר בדרך.
-      </aside>
+      <h2>State Diagram — מחזור חיים של אובייקט</h2>
+      <figure class="pdf-figure">
+        <img src="../assets/figures/uml-state.png" alt="תרשים State — מצבים, מעברים event[guard]/action, ומצב מורכב (Cooling)" loading="lazy">
+        <figcaption>תרשים State — מצבים, מעברים event[guard]/action, ומצב מורכב (Cooling)</figcaption>
+      </figure>
+      <p><strong>תרשים מצבים (State Diagram / Statechart)</strong> מתאר את <strong>מחזור החיים של אובייקט יחיד</strong> — כל המצבים שהוא יכול להיות בהם, והאירועים/תנאים שמפעילים מעברים ביניהם.</p>
+      <ul><li><strong>State:</strong> מלבן מעוגל (עם פעולות <code>entry/</code>, <code>exit/</code>).</li><li><strong>Transition:</strong> חץ מתויג <code>event [guard] / action</code>.</li><li><strong>Initial:</strong> עיגול מלא ●. <strong>Final:</strong> ◉.</li><li><strong>Composite state:</strong> מצב המכיל תת-מצבים.</li></ul>
+      <p>שימוש: תכן — אובייקטים בעלי התנהגות תלוית-מצב: רכיבי UI, פרוטוקולים, מחזור חיים של הזמנה, התקני חומרה.</p>
       <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
     </section>
 
@@ -197,10 +168,8 @@ Overnight│Regular │
     </section>
 
     <section class="lesson-block">
-      <h2>History, Concurrent Regions ו-Statecharts של Harel</h2>
-      <aside class="callout callout-note">
-        <strong>העשרה — מי המציא:</strong> תרשימי המצבים של <span dir="ltr">UML</span> מבוססים על ה-<strong>Statecharts</strong> של המדען הישראלי <strong>David Harel</strong> <span dir="ltr">(1987)</span> — הרחבה של אוטומט מצבים סופי (FSM) בתת-מצבים היררכיים, מקביליות והיסטוריה.
-      </aside>
+      <h2>History ואזורים מקביליים במצב מורכב</h2>
+      <p>מצב מורכב (composite) יכול להוסיף שתי יכולות מתקדמות מעבר לתת-מצבים פשוטים: <strong>זיכרון היסטוריה</strong> ו-<strong>אזורים מקביליים</strong>.</p>
       <h3>מצב היסטוריה <span dir="ltr">(History, H)</span></h3>
       <p>סמל <span dir="ltr">H</span> בתוך עיגול, בתוך מצב מורכב (composite). כשחוזרים למצב המורכב, ה-history «זוכר» את <strong>תת-המצב האחרון</strong> שהאובייקט היה בו — במקום להתחיל מ-Initial מחדש.</p>
       <ul>
@@ -220,6 +189,41 @@ Overnight│Regular │
     </section>
 
     <section class="lesson-block">
+      <h2>דוגמה מלאה: תרשים State למחזור חיים של הזמנה</h2>
+      <p>תרשים <span dir="ltr">State</span> מתאר את <strong>מחזור החיים של אובייקט <em>יחיד</em></strong> — כאן, אובייקט <code>Order</code> בודד. הוא מראה בכל רגע באיזה מצב ההזמנה נמצאת ואיזה אירוע מעביר אותה למצב הבא:</p>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+stateDiagram-v2
+  [*] --> New : placeOrder()
+  New --> Paid : confirmPayment()
+  Paid --> Shipped : shipOrder()
+  Shipped --> Delivered : deliverOrder()
+  Delivered --> [*]
+  New --> Cancelled : cancelOrder()
+  Paid --> Cancelled : cancelOrder()
+  Cancelled --> [*]
+        </pre>
+        <figcaption>תרשים State — מחזור החיים של הזמנה יחידה: כל מעבר מופעל על-ידי אירוע; יש שני מסלולים לסיום (Delivered או Cancelled).</figcaption>
+      </figure>
+      <ul>
+        <li><strong>מצבים (States):</strong> <span dir="ltr">New</span> (נוצרה), <span dir="ltr">Paid</span> (שולמה), <span dir="ltr">Shipped</span> (נשלחה), <span dir="ltr">Delivered</span> (נמסרה), ו-<span dir="ltr">Cancelled</span> (בוטלה).</li>
+        <li><strong>מעברים (Transitions):</strong> כל חץ מתויג באירוע שמפעיל אותו — <code dir="ltr">placeOrder()</code>, <code dir="ltr">confirmPayment()</code>, <code dir="ltr">shipOrder()</code>, <code dir="ltr">deliverOrder()</code>, <code dir="ltr">cancelOrder()</code>.</li>
+        <li><strong>כמה נתיבים לסיום:</strong> הזמנה יכולה להגיע ל-<span dir="ltr">◉</span> דרך <span dir="ltr">Delivered</span> (הצלחה) או דרך <span dir="ltr">Cancelled</span> (ביטול מ-<span dir="ltr">New</span> או מ-<span dir="ltr">Paid</span>).</li>
+      </ul>
+      <aside class="callout callout-key">
+        <span class="badge">קריטי למבחן</span> תרשים <span dir="ltr">State</span> מתאר את מחזור החיים של <strong>אובייקט אחד בלבד</strong> בעל <strong>התנהגות תלוית-מצב</strong> (state-dependent behavior): אותה קריאת מתודה עשויה להתנהג אחרת בהתאם למצב. למשל <code dir="ltr">cancelOrder()</code> חוקית מ-<span dir="ltr">New/Paid</span>, אך ל<strong>א</strong> מ-<span dir="ltr">Shipped</span> — ההזמנה כבר בדרך.
+      </aside>
+      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>Activity מול State — לא לבלבל</h2>
+      <aside class="callout callout-warn">      <ul><li><strong>Activity</strong> עוקב אחרי <strong>זרימת פעולות/תהליך</strong> (מה קורה, בסדר). מתאים לתהליך עסקי או אלגוריתם.</li><li><strong>State</strong> עוקב אחרי <strong>מצבי אובייקט</strong> והמעברים ביניהם (באיזה מצב הוא נמצא). מתאים למחזור חיים תלוי-אירועים.</li></ul>
+</aside>
+      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
       <h2>בדיקה עצמית</h2>
       <div class="quiz" data-quiz>
         <p class="quiz-q">מה מסמן פס עבה (bar) בתרשים Activity?</p>
@@ -228,6 +232,16 @@ Overnight│Regular │
           <li><button type="button" data-feedback="לא — מצב סופי הוא ◉.">מצב סופי</button></li>
           <li><button type="button" data-correct="true" data-feedback="נכון. הפס מחלק/מאחד threads של פעילות.">Fork/Join — פיצול או איחוד של זרימות מקביליות</button></li>
           <li><button type="button" data-feedback="לא — swimlane הוא מסלול אנכי.">swimlane</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מהו סימן ההתחלה (start) של תרשים Activity?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — מעוין הוא Decision.">מעוין ◇</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. עיגול שחור מלא (solid filled circle) — זהה לסימן ההתחלה ב-State.">עיגול שחור מלא ●</button></li>
+          <li><button type="button" data-feedback="לא — פס עבה הוא Fork/Join.">פס עבה</button></li>
+          <li><button type="button" data-feedback="לא — עיגול-בתוך-עיגול ◉ הוא הסיום, לא ההתחלה.">עיגול בתוך עיגול ◉</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>
@@ -248,36 +262,6 @@ Overnight│Regular │
           <li><button type="button" data-feedback="לא — מספור שייך ל-Communication.">במספר סידורי כמו 1.1</button></li>
           <li><button type="button" data-feedback="לא — ריבוי שייך ל-Class Diagram.">בסימן ריבוי כמו 1..*</button></li>
           <li><button type="button" data-correct="true" data-feedback="נכון. אירוע שמפעיל, תנאי שומר, ופעולה שמתבצעת.">event [guard] / action</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">לאיזה מקרה מתאים במיוחד תרשים State?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — זה Use Case.">תיאור מי הם השחקנים של המערכת</button></li>
-          <li><button type="button" data-feedback="לא — זה Package.">חלוקת הקוד לחבילות</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. מצבים ואירועים.">אובייקט בעל התנהגות תלוית-מצב, כמו מחזור חיים של הזמנה או רכיב UI</button></li>
-          <li><button type="button" data-feedback="לא — זה Object Diagram.">הצגת ערכי תכונות ברגע מסוים</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מהו ההבדל המרכזי בין Activity ל-State?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. תהליך מול מחזור-חיים.">Activity עוקב אחרי זרימת פעולות/תהליך; State אחרי מצבי אובייקט ומעברים</button></li>
-          <li><button type="button" data-feedback="לא — הם עונים על שאלות שונות.">אין הבדל</button></li>
-          <li><button type="button" data-feedback="לא — שניהם התנהגותיים.">Activity מבני ו-State התנהגותי</button></li>
-          <li><button type="button" data-feedback="לא — הוא מתאר מצבי אובייקט.">State מתאר חומרה</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מהו סימן ההתחלה (start) של תרשים Activity?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — מעוין הוא Decision.">מעוין ◇</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. עיגול שחור מלא (solid filled circle) — זהה לסימן ההתחלה ב-State.">עיגול שחור מלא ●</button></li>
-          <li><button type="button" data-feedback="לא — פס עבה הוא Fork/Join.">פס עבה</button></li>
-          <li><button type="button" data-feedback="לא — עיגול-בתוך-עיגול ◉ הוא הסיום, לא ההתחלה.">עיגול בתוך עיגול ◉</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>
@@ -308,6 +292,26 @@ Overnight│Regular │
           <li><button type="button" data-correct="true" data-feedback="נכון. קו מקווקו מפריד מצב מורכב לאזורים אורתוגונליים שרצים במקביל.">בקו מקווקו שמחלק מצב מורכב לאזורים אורתוגונליים</button></li>
           <li><button type="button" data-feedback="לא — H מסמן מצב היסטוריה, לא מקביליות.">בסמל H בעיגול</button></li>
           <li><button type="button" data-feedback="לא — מעוין הוא Decision.">במעוין</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">לאיזה מקרה מתאים במיוחד תרשים State?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — זה Use Case.">תיאור מי הם השחקנים של המערכת</button></li>
+          <li><button type="button" data-feedback="לא — זה Package.">חלוקת הקוד לחבילות</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. מצבים ואירועים.">אובייקט בעל התנהגות תלוית-מצב, כמו מחזור חיים של הזמנה או רכיב UI</button></li>
+          <li><button type="button" data-feedback="לא — זה Object Diagram.">הצגת ערכי תכונות ברגע מסוים</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מהו ההבדל המרכזי בין Activity ל-State?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-correct="true" data-feedback="נכון. תהליך מול מחזור-חיים.">Activity עוקב אחרי זרימת פעולות/תהליך; State אחרי מצבי אובייקט ומעברים</button></li>
+          <li><button type="button" data-feedback="לא — הם עונים על שאלות שונות.">אין הבדל</button></li>
+          <li><button type="button" data-feedback="לא — שניהם התנהגותיים.">Activity מבני ו-State התנהגותי</button></li>
+          <li><button type="button" data-feedback="לא — הוא מתאר מצבי אובייקט.">State מתאר חומרה</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>

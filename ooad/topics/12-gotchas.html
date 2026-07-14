@@ -76,124 +76,8 @@
     </header>
 
     <section class="lesson-block">
-      <h2>הבחנות בין תבניות דומות</h2>
-      <aside class="callout callout-warn">      <ul><li><strong>Aggregation (◇) מול Composition (◆):</strong> ◇ = חלק עצמאי; ◆ = חלק נהרס עם השלם.</li><li><strong>Decorator מול Proxy:</strong> שניהם עוטפים — Decorator <em>מוסיף התנהגות</em>, Proxy <em>שולט בגישה</em>.</li><li><strong>Adapter מול Facade:</strong> Adapter <em>מתאים</em> ממשק אחד לתאימות; Facade <em>מפשט</em> תת-מערכת שלמה.</li><li><strong>Strategy מול Template Method:</strong> Strategy = הרכבה בזמן ריצה; Template Method = הורשה בזמן קומפילציה.</li><li><strong>Abstract Factory מול Builder:</strong> Factory יוצרת <em>משפחת</em> מוצרים; Builder בונה מוצר מורכב <em>יחיד</em> בשלבים.</li></ul>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>הבחנות בין דיאגרמות UML</h2>
-      <aside class="callout callout-warn">      <ul><li><strong>Sequence מול Communication:</strong> אותו מידע — Sequence מדגיש <em>ציר זמן</em>, Communication מדגיש <em>מבנה קישורים</em> (הודעות ממוספרות).</li><li><strong>Activity מול State:</strong> Activity = זרימת <em>תהליך/פעולות</em>; State = <em>מצבי אובייקט</em> ומעברים.</li><li><strong>Class מול Object:</strong> Class = תבנית (טיפוסים, פעולות); Object = תצלום מופעים עם <em>ערכים</em>.</li><li><strong>Component מול Deployment:</strong> Component = רכיבים לוגיים וממשקים; Deployment = חומרה פיזית (nodes).</li><li><strong>include מול extend:</strong> include = תמיד כלול (חובה); extend = מותנה (אופציונלי).</li></ul>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>מצביעים חכמים — מלכודות</h2>
-      <aside class="callout callout-warn">      <ul><li><code>unique_ptr</code> <strong>אינו ניתן להעתקה</strong> — רק <code>std::move</code>.</li><li><strong>מעגל של shared_ptr</strong> דולף — שוברים אותו עם <code>weak_ptr</code> על ה-back-pointer.</li><li>חייבים <code>lock()</code> על <code>weak_ptr</code> לפני שימוש — הוא עלול להצביע לאובייקט שכבר נהרס.</li><li>עדיף <code>unique_ptr</code> כברירת מחדל; <code>shared_ptr</code> רק כשצריך בעלות משותפת (יש תקורת מונה אטומי).</li></ul>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>זיהוי עקרון SOLID</h2>
-      <p>בשאלות מסוג «איזה עקרון מופר» — חפשו את הסימן:</p>
-      <ul><li>מחלקה שעושה יותר מדי דברים → <strong>SRP</strong>.</li><li>צריך לשנות קוד קיים כדי להוסיף מקרה → <strong>OCP</strong>.</li><li>תת-מחלקה שמשבשת את התנהגות הבסיס → <strong>LSP</strong>.</li><li>ממשק ענק עם מתודות לא-רלוונטיות → <strong>ISP</strong>.</li><li>תלות ישירה במחלקה קונקרטית במקום בהפשטה → <strong>DIP</strong>.</li></ul>
-
-      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>בדיקה עצמית</h2>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">חלק שנהרס יחד עם השלם מיוצג ב:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — בצבירה החלק עצמאי.">Aggregation — מעוין ריק ◇</button></li>
-          <li><button type="button" data-feedback="לא — זו הורשה.">Generalization — משולש</button></li>
-          <li><button type="button" data-feedback="לא — זו תלות זמנית.">Dependency — חץ מקווקו</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. בעלות חזקה ומשך חיים משותף.">Composition — מעוין מלא ◆</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">עוטף אובייקט כדי לשלוט בגישה אליו (lazy/caching) — בלי לשנות התנהגות:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — Decorator מוסיף התנהגות/אחריות.">Decorator</button></li>
-          <li><button type="button" data-feedback="לא — Adapter ממיר ממשק.">Adapter</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. שליטה בגישה.">Proxy</button></li>
-          <li><button type="button" data-feedback="לא — מבני עץ.">Composite</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">אלגוריתם שלם שמוחלף בזמן ריצה דרך הרכבה:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — זה הורשה בזמן קומפילציה.">Template Method</button></li>
-          <li><button type="button" data-feedback="לא — התראות אחד-לרבים.">Observer</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. הרכבה בזמן ריצה.">Strategy</button></li>
-          <li><button type="button" data-feedback="לא — עטיפת בקשה.">Command</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">שתי דיאגרמות עם אותו מידע — אחת מדגישה ציר זמן והשנייה מבנה קישורים:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — אלו עונות על שאלות שונות (תהליך מול מצב).">Activity ו-State</button></li>
-          <li><button type="button" data-feedback="לא — תבנית מול מופעים.">Class ו-Object</button></li>
-          <li><button type="button" data-feedback="לא — היקף מול חומרה.">Use Case ו-Deployment</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. Sequence=זמן, Communication=מבנה.">Sequence ו-Communication</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מחלקה שגם שומרת נתונים, גם שולחת מייל וגם מייצרת דוח מפרה:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. שלוש סיבות להשתנות.">Single Responsibility (SRP)</button></li>
-          <li><button type="button" data-feedback="לא — הבעיה היא ריבוי אחריות.">Open/Closed</button></li>
-          <li><button type="button" data-feedback="לא — אין כאן החלפת טיפוסים.">Liskov Substitution</button></li>
-          <li><button type="button" data-feedback="לא — לא סוגיית ממשקים.">Interface Segregation</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">כדי לשבור הפניה מעגלית בין שני shared_ptr:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — רק מחמיר.">להוסיף עוד shared_ptr</button></li>
-          <li><button type="button" data-feedback="לא — מזיק.">להגדיל את המונה ידנית</button></li>
-          <li><button type="button" data-feedback="לא — לא ניתן לשתף בעלות עם unique_ptr.">להשתמש ב-unique_ptr לשניהם</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. weak_ptr אינו מעלה ספירה.">להפוך אחת ההפניות ל-weak_ptr</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">תרחיש אופציונלי שמרחיב תרחיש אחר בתנאי מסוים בתרשים Use Case:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. extend = הרחבה מותנית.">«extend»</button></li>
-          <li><button type="button" data-feedback="לא — include הוא תמיד כלול (חובה).">«include»</button></li>
-          <li><button type="button" data-feedback="לא — לא הקשר הנכון כאן.">Generalization</button></li>
-          <li><button type="button" data-feedback="לא — קו אסוציאציה בין שחקן לתרחיש.">Association</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מבנה עץ (מערכת קבצים) שבו הלקוח מתייחס לקובץ ולתיקייה באופן אחיד:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — מוסיף אחריות, לא בונה עץ.">Decorator</button></li>
-          <li><button type="button" data-feedback="לא — מפשט תת-מערכת.">Facade</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. part-whole עם ממשק אחיד.">Composite</button></li>
-          <li><button type="button" data-feedback="לא — מעבר על אוסף.">Iterator</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-    </section>
-
-    <section class="lesson-block">
       <h2>מלכודת דיאגרמות: אותה תמונה, שאלה אחרת</h2>
-      <p>שאלות רבות מציגות שתי דיאגרמות דומות ושואלות «מה ההבדל». הטבלה הבאה מפרקת את שלושת הזוגות הקלאסיים — לכל אחד <strong>דוגמה קונקרטית</strong>:</p>
+      <p>שאלות רבות מציגות שתי דיאגרמות דומות ושואלות «מה ההבדל». להלן שלושת הזוגות הקלאסיים — לכל אחד <strong>דוגמה קונקרטית</strong>:</p>
 
       <aside class="callout callout-warn">
         <p><strong>1. <span dir="ltr">State</span> ≠ <span dir="ltr">Sequence</span></strong></p>
@@ -230,7 +114,16 @@
         </ul>
       </aside>
 
-      <p class="source-tag">מקור: <span dir="ltr">UML-Diagrams-State-Object-Package-Component.pdf p43</span></p>
+      <aside class="callout callout-warn">
+        <p><strong>עוד זוגות שקל להחליף ביניהם</strong></p>
+        <ul>
+          <li><strong><span dir="ltr">Sequence</span> מול <span dir="ltr">Communication</span>:</strong> אותו מידע — <span dir="ltr">Sequence</span> מדגיש <em>ציר זמן</em>, <span dir="ltr">Communication</span> מדגיש <em>מבנה קישורים</em> (הודעות ממוספרות).</li>
+          <li><strong><span dir="ltr">Activity</span> מול <span dir="ltr">State</span>:</strong> <span dir="ltr">Activity</span> = זרימת <em>תהליך/פעולות</em>; <span dir="ltr">State</span> = <em>מצבי אובייקט</em> ומעברים.</li>
+          <li><strong><span dir="ltr">include</span> מול <span dir="ltr">extend</span>:</strong> <span dir="ltr">include</span> = תמיד כלול (חובה); <span dir="ltr">extend</span> = מותנה (אופציונלי).</li>
+        </ul>
+      </aside>
+
+      <p class="source-tag">מקור: <span dir="ltr">UML-Diagrams-State-Object-Package-Component.pdf p43 · OOAD_Course_Summary.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -260,6 +153,15 @@
       </aside>
 
       <aside class="callout callout-warn">
+        <p><strong>עוד זוגות תבניות שמתחלפים במבחן</strong></p>
+        <ul>
+          <li><strong><span dir="ltr">Aggregation</span> (◇) מול <span dir="ltr">Composition</span> (◆):</strong> ◇ = חלק עצמאי; ◆ = חלק נהרס עם השלם.</li>
+          <li><strong><span dir="ltr">Strategy</span> מול <span dir="ltr">Template Method</span>:</strong> <span dir="ltr">Strategy</span> = הרכבה בזמן ריצה; <span dir="ltr">Template Method</span> = הורשה בזמן קומפילציה.</li>
+          <li><strong><span dir="ltr">Abstract Factory</span> מול <span dir="ltr">Builder</span>:</strong> <span dir="ltr">Factory</span> יוצרת <em>משפחת</em> מוצרים; <span dir="ltr">Builder</span> בונה מוצר מורכב <em>יחיד</em> בשלבים.</li>
+        </ul>
+      </aside>
+
+      <aside class="callout callout-warn">
         <p><strong>סדר ה-<span dir="ltr">Decorator</span> משנה!</strong></p>
         <ul>
           <li>מכיוון שכל דקורטור עוטף את הקודם, <strong>סדר העטיפה משנה את התוצאה</strong>.<br>
@@ -277,7 +179,7 @@
         </ul>
       </aside>
 
-      <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Structural-Patterns.pdf p47</span></p>
+      <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Structural-Patterns.pdf p47 · OOAD_Course_Summary.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -291,6 +193,22 @@
         </ul>
       </aside>
       <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Creational.pdf p60</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>מצביעים חכמים — מלכודות</h2>
+      <aside class="callout callout-warn">      <ul><li><code>unique_ptr</code> <strong>אינו ניתן להעתקה</strong> — רק <code>std::move</code>.</li><li><strong>מעגל של shared_ptr</strong> דולף — שוברים אותו עם <code>weak_ptr</code> על ה-back-pointer.</li><li>חייבים <code>lock()</code> על <code>weak_ptr</code> לפני שימוש — הוא עלול להצביע לאובייקט שכבר נהרס.</li><li>עדיף <code>unique_ptr</code> כברירת מחדל; <code>shared_ptr</code> רק כשצריך בעלות משותפת (יש תקורת מונה אטומי).</li></ul>
+</aside>
+
+      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>זיהוי עקרון SOLID</h2>
+      <p>בשאלות מסוג «איזה עקרון מופר» — חפשו את הסימן:</p>
+      <ul><li>מחלקה שעושה יותר מדי דברים → <strong>SRP</strong>.</li><li>צריך לשנות קוד קיים כדי להוסיף מקרה → <strong>OCP</strong>.</li><li>תת-מחלקה שמשבשת את התנהגות הבסיס → <strong>LSP</strong>.</li><li>ממשק ענק עם מתודות לא-רלוונטיות → <strong>ISP</strong>.</li><li>תלות ישירה במחלקה קונקרטית במקום בהפשטה → <strong>DIP</strong>.</li></ul>
+
+      <p class="source-tag">מקור: <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -325,7 +243,7 @@ public:
     </section>
 
     <section class="lesson-block">
-      <h2>בדיקה עצמית — הבחנות ומלכודות</h2>
+      <h2>בדיקה עצמית</h2>
       <div class="quiz" data-quiz>
         <p class="quiz-q">תרשים שמראה אובייקט <span dir="ltr">Order</span> <u>יחיד</u> שעובר <span dir="ltr">New→Paid→Shipped</span> הוא:</p>
         <ul class="quiz-opts">
@@ -357,22 +275,62 @@ public:
         <p class="quiz-feedback" hidden></p>
       </div>
       <div class="quiz" data-quiz>
+        <p class="quiz-q">עוטף אובייקט כדי לשלוט בגישה אליו (lazy/caching) — בלי לשנות התנהגות:</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — Decorator מוסיף התנהגות/אחריות.">Decorator</button></li>
+          <li><button type="button" data-feedback="לא — Adapter ממיר ממשק.">Adapter</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. שליטה בגישה.">Proxy</button></li>
+          <li><button type="button" data-feedback="לא — מבני עץ.">Composite</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מבנה עץ (מערכת קבצים) שבו הלקוח מתייחס לקובץ ולתיקייה באופן אחיד:</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — מוסיף אחריות, לא בונה עץ.">Decorator</button></li>
+          <li><button type="button" data-feedback="לא — מפשט תת-מערכת.">Facade</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. part-whole עם ממשק אחיד.">Composite</button></li>
+          <li><button type="button" data-feedback="לא — מעבר על אוסף.">Iterator</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">חלק שנהרס יחד עם השלם מיוצג ב:</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — בצבירה החלק עצמאי.">Aggregation — מעוין ריק ◇</button></li>
+          <li><button type="button" data-feedback="לא — זו הורשה.">Generalization — משולש</button></li>
+          <li><button type="button" data-feedback="לא — זו תלות זמנית.">Dependency — חץ מקווקו</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. בעלות חזקה ומשך חיים משותף.">Composition — מעוין מלא ◆</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מחלקה שגם שומרת נתונים, גם שולחת מייל וגם מייצרת דוח מפרה:</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-correct="true" data-feedback="נכון. שלוש סיבות להשתנות.">Single Responsibility (SRP)</button></li>
+          <li><button type="button" data-feedback="לא — הבעיה היא ריבוי אחריות.">Open/Closed</button></li>
+          <li><button type="button" data-feedback="לא — אין כאן החלפת טיפוסים.">Liskov Substitution</button></li>
+          <li><button type="button" data-feedback="לא — לא סוגיית ממשקים.">Interface Segregation</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">כדי לשבור הפניה מעגלית בין שני shared_ptr:</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — רק מחמיר.">להוסיף עוד shared_ptr</button></li>
+          <li><button type="button" data-feedback="לא — מזיק.">להגדיל את המונה ידנית</button></li>
+          <li><button type="button" data-feedback="לא — לא ניתן לשתף בעלות עם unique_ptr.">להשתמש ב-unique_ptr לשניהם</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. weak_ptr אינו מעלה ספירה.">להפוך אחת ההפניות ל-weak_ptr</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
         <p class="quiz-q">מצא את הטעות: דקורטור <code dir="ltr">MilkDecorator::cost()</code> מחזיר <code dir="ltr">0.5</code> בלבד. מה חסר?</p>
         <ul class="quiz-opts">
           <li><button type="button" data-correct="true" data-feedback="נכון. חייב להאציל: inner->cost() + 0.5, אחרת השרשרת נשברת.">קריאה למרכיב הנעטף — <code dir="ltr">inner-&gt;cost() + 0.5</code></button></li>
           <li><button type="button" data-feedback="לא — סוכר הוא דקורטור נפרד, לא חלק מזה.">להוסיף גם מחיר סוכר</button></li>
           <li><button type="button" data-feedback="לא — Singleton לא רלוונטי לדקורטור.">להפוך את המחלקה ל-Singleton</button></li>
           <li><button type="button" data-feedback="לא — הבעיה אינה בבנאי אלא באי-האצלה ל-inner.">להסיר את הבנאי</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מדוע <code dir="ltr">Encrypt(Compress(data))</code> עדיף על <code dir="ltr">Compress(Encrypt(data))</code>?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — הסדר דווקא כן משנה מאוד בדקורטורים.">אין הבדל — הסדר לא משנה בדקורטור</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. מידע מוצפן נראה אקראי וכמעט לא נדחס — לכן דוחסים קודם.">מידע מוצפן כמעט לא נדחס, לכן דוחסים לפני ההצפנה</button></li>
-          <li><button type="button" data-feedback="לא — הצפנה אינה מהירה יותר על מידע דחוס בהכרח; הסיבה היא יעילות הדחיסה.">הצפנה מהירה יותר על מידע דחוס</button></li>
-          <li><button type="button" data-feedback="לא — Proxy אינו קשור כאן; זו שאלת סדר דקורטורים.">כי Compress הוא בעצם Proxy</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>

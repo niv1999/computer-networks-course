@@ -78,7 +78,7 @@
     <section class="lesson-block">
       <h2>מהי תבנית עיצוב?</h2>
       <p><strong>תבנית עיצוב <span dir="ltr">(Design Pattern)</span></strong> היא פתרון כללי, מנוסה ורב-שימושי לבעיית עיצוב <strong>חוזרת</strong>. חשוב: תבנית איננה קטע קוד מוכן להעתקה — היא <strong>תיאור של רעיון</strong> שאתה מתאים לבעיה שלך. כל תבנית מתעדת שלושה דברים: את ה<strong>בעיה</strong> שהיא פותרת, את ה<strong>נימוק והפשרות <span dir="ltr">(rationale &amp; trade-offs)</span></strong> — מה מרוויחים ומה מקריבים — ואת <strong>הפתרון</strong> כ<strong>נקודת פתיחה שמתאימים</strong>, לא כמרשם נוקשה שמעתיקים כלשונו.</p>
-      <p>המקור: ספר <strong>«Gang of Four»</strong> — <span dir="ltr">«Design Patterns: Elements of Reusable Object-Oriented Software»</span> מאת <span dir="ltr">Gamma, Helm, Johnson &amp; Vlissides</span>, שיצא לאור ב-<strong>1994</strong>. הספר מקטלג <strong>23 תבניות</strong> בשלוש משפחות: <strong>יצירה <span dir="ltr">(Creational)</span></strong>, <strong>מבנה <span dir="ltr">(Structural)</span></strong> ו<strong>התנהגות <span dir="ltr">(Behavioral)</span></strong>.</p>
+      <p>תבניות <strong>GoF</strong> מקטלגות <strong>23 תבניות</strong> בשלוש משפחות: <strong>יצירה <span dir="ltr">(Creational)</span></strong>, <strong>מבנה <span dir="ltr">(Structural)</span></strong> ו<strong>התנהגות <span dir="ltr">(Behavioral)</span></strong>.</p>
       <p><strong>תבניות יצירה <span dir="ltr">(Creational)</span></strong> עוסקות ב<strong>אופן יצירת האובייקטים</strong> — הן מפרידות את הלקוח <span dir="ltr">(Client)</span> מפרטי היצירה, כך שהקוד לא תלוי במחלקות קונקרטיות ובאופן שבהן הן מכוננות.</p>
 
       <aside class="callout callout-note">
@@ -89,7 +89,6 @@
           <li><strong>תקשורת <span dir="ltr">(Communication)</span>:</strong> שם התבנית הוא <strong>אוצר מילים משותף</strong> — אומרים «נשתמש כאן ב-Observer» וכולם מבינים מיד את המבנה. עוזר בהצגת מערכת, בלימוד מערכת זרה מהר, ובתכנון קבוצתי.</li>
           <li><strong>הכשרה <span dir="ltr">(Training)</span>:</strong> התבניות מפיצות ידע של מומחים מנוסים ומתעדות ניסיון שנצבר בשטח.</li>
         </ul>
-        <p>רקע היסטורי קצר: רעיון ה«תבנית» הגיע במקור מהאדריכל <span dir="ltr">Christopher Alexander</span> (1977), שהגדיר תבנית כפתרון חוזר וניתן-להתאמה בבנייה; חלוצי התוכנה אימצו אותו והתחילו לתעד ידע-סמוי מתוך מערכות קיימות (למשל <span dir="ltr">ET++, NeXTStep</span>) עד לספר ה-GoF.</p>
       </aside>
 
       <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Creational.pdf</span>, <span dir="ltr">Exercise8-DesignPatternsSingletonPrototype.pdf</span></p>
@@ -291,6 +290,24 @@ Vehicle* car = cb.getResult();</code></pre>
     </section>
 
     <section class="lesson-block">
+      <h2>וידאו והרחבה</h2>
+      <aside class="callout callout-note">
+      <figure class="video-embed">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/KFA6df1r75Q"
+            title="23 Design Patterns Explained in 3 Minutes (TechTalk with Bill)"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <figcaption class="video-note"><span dir="ltr">23 Design Patterns Explained in 3 Minutes (TechTalk with Bill)</span> — סקירת-על של כל 23 תבניות ה-GoF וחלוקתן לשלוש המשפחות.</figcaption>
+      </figure>
+        <p>📖 עיון נוסף: <span dir="ltr"><a href="https://refactoring.guru/design-patterns/catalog" target="_blank" rel="noopener">Refactoring.Guru — Design Patterns Catalog</a></span> — כל תבנית עם תרשים מבנה, בעיה/פתרון וקוד לדוגמה.</p>
+      </aside>
+    </section>
+
+    <section class="lesson-block">
       <h2>בדיקה עצמית</h2>
       <div class="quiz" data-quiz>
         <p class="quiz-q">לאיזו משפחה שייכת התבנית Singleton?</p>
@@ -372,24 +389,6 @@ Vehicle* car = cb.getResult();</code></pre>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>
-    </section>
-
-    <section class="lesson-block">
-      <h2>וידאו והרחבה</h2>
-      <aside class="callout callout-note">
-      <figure class="video-embed">
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/KFA6df1r75Q"
-            title="23 Design Patterns Explained in 3 Minutes (TechTalk with Bill)"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <figcaption class="video-note"><span dir="ltr">23 Design Patterns Explained in 3 Minutes (TechTalk with Bill)</span> — סקירת-על של כל 23 תבניות ה-GoF וחלוקתן לשלוש המשפחות.</figcaption>
-      </figure>
-        <p>📖 עיון נוסף: <span dir="ltr"><a href="https://refactoring.guru/design-patterns/catalog" target="_blank" rel="noopener">Refactoring.Guru — Design Patterns Catalog</a></span> — כל תבנית עם תרשים מבנה, בעיה/פתרון וקוד לדוגמה.</p>
-      </aside>
     </section>
 
     <div class="mark-done-bottom">

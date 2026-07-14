@@ -84,40 +84,8 @@
 
     <section class="lesson-block">
       <h2>Composite</h2>
-      <p><strong>מטרה:</strong> להרכיב אובייקטים ל<strong>מבני עץ</strong> (part-whole), כך שהלקוח מתייחס ל<strong>אובייקט יחיד ולהרכב באופן אחיד</strong> — אותו ממשק לעלה ולצומת.</p>
-<pre dir="ltr"><code>class Component { virtual void render() = 0; };
-class Leaf : public Component { void render() override; };
-class Composite : public Component {
-  vector&lt;Component*&gt; children;
-  void render() override { for (auto c : children) c-&gt;render(); }
-};</code></pre>      <p><strong>שימוש:</strong> מערכת קבצים, עצי UI, תרשימי ארגון.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Structural-Patterns.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Decorator ו-Proxy</h2>
-      <p><strong>Decorator:</strong> להוסיף אחריות לאובייקט <strong>דינמית</strong>, בזמן ריצה — חלופה גמישה לתת-מחלוק (subclassing). ה-Decorator עוטף את האובייקט ומממש את אותו ממשק. דוגמה: זרמי I/O, רכיבי GUI עם מסגרת/גלילה.</p>
-      <p><strong>Proxy:</strong> «נציג» (surrogate) לאובייקט אחר כדי <strong>לשלוט בגישה</strong> אליו — טעינה עצלה (lazy loading), caching, logging, בקרת הרשאות. סוגים: virtual proxy, protection proxy, remote proxy.</p>
-      <aside class="callout callout-key">      <p><strong>Decorator מול Proxy:</strong> שניהם עוטפים אובייקט עם אותו ממשק — אבל Decorator <em>מוסיף התנהגות/אחריות</em>, ו-Proxy <em>שולט בגישה</em> (בלי לשנות את ההתנהגות עצמה).</p>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise10-DesignPatternsBuilderDecorator.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Adapter ו-Facade</h2>
-      <p><strong>Adapter:</strong> להמיר את הממשק של מחלקה לממשק אחר שהלקוח מצפה לו — מאפשר ל<strong>ממשקים לא-תואמים לעבוד יחד</strong>. דוגמה: עטיפת API ישן, התאמת ספריית צד-שלישי לממשק מקומי.</p>
-      <p><strong>Facade:</strong> לספק <strong>ממשק פשוט אחד</strong> לתת-מערכת מורכבת — מפחית צימוד בין הלקוח לפנימיות תת-המערכת. דוגמה: חזית של קומפיילר, בקר מערכת קולנוע ביתי, API אחיד מעל כמה שירותים.</p>
-      <aside class="callout callout-note">      <p><strong>Adapter מול Facade:</strong> Adapter <em>מתאים</em> ממשק קיים אחד לממשק אחר (לתאימות); Facade <em>מפשט</em> גישה לתת-מערכת שלמה מרובת מחלקות.</p>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">Design-Patterns-Structural-Patterns.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Composite — משתתפים, ניהול ילדים ודוגמה מלאה</h2>
-      <p>עד כה ראינו את הרעיון הכללי. עכשיו נפרק את התבנית ל<strong>תפקידים (participants)</strong> — שמות המחלקות שהמבחן עשוי לשאול עליהם — ונראה איך <strong>בונים</strong> את העץ בפועל.</p>
+      <p><strong>מטרה:</strong> להרכיב אובייקטים ל<strong>מבני עץ</strong> (part-whole), כך שהלקוח מתייחס ל<strong>אובייקט יחיד ולהרכב באופן אחיד</strong> — אותו ממשק לעלה ולצומת. <strong>שימוש טיפוסי:</strong> מערכת קבצים, עצי UI, תרשימי ארגון.</p>
+      <p>נפרק את התבנית ל<strong>תפקידים (participants)</strong> — שמות המחלקות שהמבחן עשוי לשאול עליהם — ונראה איך <strong>בונים</strong> את העץ בפועל.</p>
       <ul>
         <li><strong><span dir="ltr">Component</span></strong> — הממשק המשותף שגם לעלה וגם להרכב. מכריז על הפעולה המשותפת (למשל <span dir="ltr">getSize()</span>), ולעיתים מגדיר גישה להורה <span dir="ltr">(parent)</span> והתנהגות ברירת-מחדל.</li>
         <li><strong><span dir="ltr">Leaf</span></strong> (עלה) — עצם ללא ילדים; מבצע את הפעולה בעצמו. <em>דוגמה: קובץ בודד.</em></li>
@@ -233,6 +201,7 @@ public: ProxyImage(string f):file(f){}
         <li><strong><span dir="ltr">Remote Proxy</span></strong> — נציג מקומי לעצם שנמצא במרחב-כתובות אחר / מעבר לרשת.</li>
         <li><strong><span dir="ltr">Smart Reference</span></strong> — תחליף למצביע גולמי שמבצע פעולות נוספות בכל גישה (למשל <strong>ספירת הפניות</strong> או logging). כאן נסגר המעגל ל-<span dir="ltr">smart pointers</span> מיחידה 1.</li>
       </ul>
+      <aside class="callout callout-key"><p><strong>Decorator מול Proxy:</strong> שניהם עוטפים אובייקט עם אותו ממשק — אבל <span dir="ltr">Decorator</span> <em>מוסיף התנהגות/אחריות</em>, ו-<span dir="ltr">Proxy</span> <em>שולט בגישה</em> (בלי לשנות את ההתנהגות עצמה).</p></aside>
       <h3>חסרונות של <span dir="ltr">Proxy</span></h3>
       <ul>
         <li><strong>שכבת תיווך נוספת:</strong> אינדירקציה נוספת שמקשה על מעקב וניפוי; מנהלים שתי מחלקות (Proxy + RealSubject) במקום אחת.</li>
@@ -301,6 +270,7 @@ public:
   }
 };
 // Client: theater.watchMovie("Inception");</code></pre>
+      <aside class="callout callout-note"><p><strong>Adapter מול Facade:</strong> <span dir="ltr">Adapter</span> <em>מתאים</em> ממשק קיים אחד לממשק אחר (לתאימות); <span dir="ltr">Facade</span> <em>מפשט</em> גישה לתת-מערכת שלמה מרובת מחלקות.</p></aside>
       <h3>חסרונות של <span dir="ltr">Facade</span></h3>
       <ul>
         <li><strong><span dir="ltr">God Object</span>:</strong> החזית עלולה לתפוח למחלקת-ענק שיודעת «הכול» ומרכזת יותר מדי אחריות.</li>

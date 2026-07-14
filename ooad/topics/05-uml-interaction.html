@@ -81,90 +81,12 @@
         <img src="../assets/figures/uml-use-case.png" alt="תרשים Use Case — שחקנים, תרחישים, גבול המערכת, include/extend" loading="lazy">
         <figcaption>תרשים Use Case — שחקנים, תרחישים, גבול המערכת, include/extend</figcaption>
       </figure>
-      <p><strong>תרשים תרחישי שימוש (Use Case Diagram)</strong> מתאר את ההיקף הפונקציונלי מנקודת מבט המשתמש — <strong>מה</strong> המערכת עושה, <strong>למי</strong>. מגדיר את גבול המערכת ואת כל השחקנים החיצוניים.</p>
+      <p><strong>תרשים תרחישי שימוש (Use Case Diagram)</strong> מתאר את ההיקף הפונקציונלי מנקודת מבט המשתמש — <strong>מה</strong> המערכת עושה, <strong>למי</strong>. הוא מגדיר את גבול המערכת ואת כל השחקנים החיצוניים, ומצוירים אותו <strong>ראשון</strong> כדי לתפוס את הדרישות הפונקציונליות — בלי לפרט <em>איך</em>.</p>
       <ul><li><strong>Actor:</strong> דמות מקל (אדם או מערכת חיצונית).</li><li><strong>Use Case:</strong> אליפסה (יכולת/פעולה).</li><li><strong>System boundary:</strong> מלבן העוטף את התרחישים.</li><li>קשרים: אסוציאציה (קו), <code>«include»</code> (תמיד כלול), <code>«extend»</code> (הרחבה מותנית).</li></ul>
-      <aside class="callout callout-key">      <p><strong>include מול extend:</strong> <code>«include»</code> — תרחיש שתמיד מתבצע כחלק מאחר (חובה). <code>«extend»</code> — תרחיש אופציונלי שמרחיב אחר בתנאי מסוים.</p>
-</aside>
-
+      <aside class="callout callout-note">
+        <p><strong>שלב ותפקיד:</strong> תרשים Use Case נוצר בשלב ה<strong>דרישות והניתוח <span dir="ltr">(Requirements &amp; Analysis)</span></strong> על ידי מנתחי מערכות ובעלי עניין <span dir="ltr">(business analysts, stakeholders)</span>, ומשמש כ"חוזה" למה שייבנה. כלל אצבע: מערכת מורכבת טיפוסית מתוארת בכ־20 תרחישי שימוש. תרחיש שימוש = אינטראקציה טיפוסית משתמש־מערכת שמשיגה מטרה בדידה ונראית למשתמש.</p>
+      </aside>
       <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Sequence Diagram — סדר ההודעות בזמן</h2>
-      <figure class="pdf-figure">
-        <img src="../assets/figures/uml-sequence.png" alt="תרשים Sequence — lifelines, activation, הודעות, ומקטעי loop/alt" loading="lazy">
-        <figcaption>תרשים Sequence — lifelines, activation, הודעות, ומקטעי loop/alt</figcaption>
-      </figure>
-      <p><strong>תרשים רצף (Sequence Diagram)</strong> מראה כיצד אובייקטים מתקשרים <strong>לאורך זמן</strong> — הסדר המדויק של ההודעות המוחלפות בתרחיש נתון. <strong>הזמן זורם כלפי מטה.</strong></p>
-      <ul><li><strong>Lifeline:</strong> קו מקווקו אנכי לכל משתתף.</li><li><strong>Activation bar:</strong> מלבן דק על הקו — פרק זמן פעילות.</li><li><strong>הודעה סינכרונית:</strong> חץ מלא →. <strong>הודעת חזרה:</strong> חץ מקווקו -->.</li><li><strong>Combined fragments:</strong> <code>loop</code> (חזרה), <code>alt</code> (if/else).</li></ul>
-
-      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Communication Diagram — אותו מידע, מבנה אחר</h2>
-      <figure class="pdf-figure">
-        <img src="../assets/figures/uml-communication.png" alt="תרשים Communication — אובייקטים מקושרים עם הודעות ממוספרות" loading="lazy">
-        <figcaption>תרשים Communication — אובייקטים מקושרים עם הודעות ממוספרות</figcaption>
-      </figure>
-      <p><strong>תרשים תקשורת (Communication Diagram)</strong> מציג את אותו מידע כמו Sequence, אך מאורגן סביב <strong>מבנה האובייקטים</strong> — אילו אובייקטים מקושרים לאילו, עם הודעות <strong>ממוספרות</strong> (1:, 1.1:, 2:) שמראות את סדר הקריאות.</p>
-      <p>מעדיפים אותו כשמבנה השיתופים חשוב יותר מציר הזמן המדויק.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>בדיקה עצמית</h2>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מה מגדיר Use Case Diagram?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. מבט חיצוני על הפונקציונליות וגבול המערכת.">את היקף המערכת: מה היא עושה ולמי (שחקנים ותרחישים)</button></li>
-          <li><button type="button" data-feedback="לא — זה Sequence Diagram.">את הסדר המדויק של הודעות בין אובייקטים</button></li>
-          <li><button type="button" data-feedback="לא — זה Class Diagram.">את מבנה המחלקות הפנימי</button></li>
-          <li><button type="button" data-feedback="לא — זה State Diagram.">את מחזור החיים של אובייקט</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מה ההבדל בין «include» ל-«extend» בתרשים Use Case?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. include=חובה, extend=מותנה.">include הוא תרחיש שתמיד כלול; extend הוא הרחבה אופציונלית בתנאי</button></li>
-          <li><button type="button" data-feedback="לא — הפוך.">include אופציונלי ו-extend חובה</button></li>
-          <li><button type="button" data-feedback="לא — יש הבדל סמנטי.">שניהם שם נרדף</button></li>
-          <li><button type="button" data-feedback="לא — הם קשרים בין תרחישים.">שניהם סוגי שחקנים</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">בתרשים Sequence, לאיזה כיוון זורם הזמן?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — הזמן אנכי (מטה), לא אופקי.">משמאל לימין</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. הודעות מוקדמות למעלה, מאוחרות למטה.">כלפי מטה לאורך ה-lifelines</button></li>
-          <li><button type="button" data-feedback="לא — הסדר האנכי הוא המהות.">אין משמעות לזמן</button></li>
-          <li><button type="button" data-feedback="לא — כלפי מטה.">כלפי מעלה</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">מהו combined fragment מסוג <code>alt</code>?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — חזרה היא &lt;code&gt;loop&lt;/code&gt;.">חזרה על רצף (loop)</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. alt = אלטרנטיבות לפי תנאי.">מקטע המייצג בחירה מותנית (if/else) בין רצפי הודעות</button></li>
-          <li><button type="button" data-feedback="לא — לא קשור.">הודעה אסינכרונית</button></li>
-          <li><button type="button" data-feedback="לא — זה lifeline.">קו חיים של אובייקט</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">במה שונה Communication Diagram מ-Sequence?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — לא קשור לחומרה.">הוא מראה חומרה</button></li>
-          <li><button type="button" data-feedback="לא — שניהם התנהגותיים.">הוא דיאגרמת מבנה</button></li>
-          <li><button type="button" data-feedback="לא — דווקא מציג הודעות ממוספרות.">הוא אינו כולל הודעות</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. אותו מידע, דגש על הקישורים.">הוא מארגן את המידע סביב מבנה האובייקטים עם הודעות ממוספרות, ולא סביב ציר זמן</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
     </section>
 
     <section class="lesson-block">
@@ -178,10 +100,7 @@
       <aside class="callout callout-key">
         <p><strong>לזכור למבחן:</strong> שחקן = כל ישות חיצונית, אנושית או מערכתית, המתקשרת עם המערכת. הוא מייצג <strong>תפקיד</strong> ולא אדם מסוים. (שאלה זו נבדקת ישירות במבחן.)</p>
       </aside>
-      <aside class="callout callout-note">
-        <p><strong>העשרה — שלב ותפקיד:</strong> תרשים Use Case נוצר בשלב <strong>הדרישות והניתוח <span dir="ltr">(Requirements &amp; Analysis)</span></strong>, על ידי מנתחי מערכות ובעלי עניין <span dir="ltr">(business analysts, stakeholders)</span>, ומשמש כ"חוזה" למה שייבנה. כלל אצבע <span dir="ltr">(Coad &amp; Yourdon)</span>: מערכת מורכבת טיפוסית מתוארת בכ־20 תרחישי שימוש. תרחיש שימוש = אינטראקציה טיפוסית משתמש־מערכת שמשיגה מטרה בדידה ונראית למשתמש.</p>
-      </aside>
-      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span>, <span dir="ltr">UML (1).pdf</span></p>
+      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -200,7 +119,7 @@
       <aside class="callout callout-key">
         <p><strong>לזכור למבחן:</strong> <span dir="ltr">&laquo;include&raquo;</span> = התרחיש הכלול <strong>תמיד מתבצע</strong> כחלק מתרחיש הבסיס. <span dir="ltr">&laquo;extend&raquo;</span> = מתבצע רק בתנאי, בנקודת הסתעפות.</p>
       </aside>
-      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span>, <span dir="ltr">UML (1).pdf</span></p>
+      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -242,28 +161,14 @@
     </section>
 
     <section class="lesson-block">
-      <h2>דוגמה מלאה — Sequence של העברת כספים</h2>
-      <p>ממשיכים את תרחיש הבנק: הלקוח לחץ "העבר כספים". מהו סדר ההודעות בין הרכיבים? זה בדיוק מה ש־<strong>תרשים Sequence</strong> מראה — הרכיב הנכון לתיאור <strong>חילופי הודעות צעד־צעד</strong> בין <span dir="ltr">Browser</span>, <span dir="ltr">AppServer</span> ו־<span dir="ltr">Database</span>.</p>
-      <ul>
-        <li><strong>Lifelines (שלושה):</strong> <span dir="ltr">:Browser</span>, <span dir="ltr">:AppServer</span>, <span dir="ltr">:Database</span> — כל אחד קו מקווקו אנכי כלפי מטה.</li>
-        <li><strong>הודעות סינכרוניות (חץ מלא →):</strong> נשלחות לפי הסדר האנכי, מוקדם למעלה, מאוחר למטה.</li>
-        <li><strong>הודעות חזרה (חץ מקווקו --&gt;):</strong> מחזירות ערך לשולח.</li>
-        <li><strong>Activation bars:</strong> מלבן דק על ה־lifeline — פרק הזמן שבו אותו רכיב <em>פעיל בעיבוד</em>.</li>
-      </ul>
-      <p><strong>סדר ההודעות:</strong></p>
-      <pre dir="ltr"><code>:Browser  --&gt;  :AppServer  : transferFunds(from, to, amount)   // סינכרוני
-:AppServer --&gt; :Database   : checkBalance(from)                // סינכרוני
-:Database  --&gt; :AppServer  : balance                           // חזרה (מקווקו)
-:AppServer --&gt; :Database   : debit(from, amount) / credit(to)  // סינכרוני
-:Database  --&gt; :AppServer  : ok                                // חזרה
-:AppServer --&gt; :Browser    : "Transfer complete"               // חזרה</code></pre>
-      <aside class="callout callout-key">
-        <p><strong>למה Sequence ולא Communication? (נבדק במבחן)</strong> שני התרשימים מציגים את <em>אותו</em> מידע, אך <strong>Sequence מדגיש את סדר הזמן</strong> — ציר אנכי שבו רואים מייד מה קורה לפני מה. כשהשאלה היא "מהו רצף הצעדים" (העברת כספים צעד־צעד), Sequence הוא הבחירה הטבעית. Communication מדגיש קשרים בין אובייקטים, לא ציר זמן רציף.</p>
-      </aside>
-      <aside class="callout callout-note">
-        <p><strong>העשרה — שלב ותפקיד:</strong> תרשים Sequence שייך לשלב ה<strong>תיכון <span dir="ltr">(Design)</span></strong> ומשמש מפתחים ואדריכלים כדי לפרט את שיתוף הפעולה עבור תרחיש/פעולה בודדים.</p>
-      </aside>
-      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span>, <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
+      <h2>Sequence Diagram — סדר ההודעות בזמן</h2>
+      <figure class="pdf-figure">
+        <img src="../assets/figures/uml-sequence.png" alt="תרשים Sequence — lifelines, activation, הודעות, ומקטעי loop/alt" loading="lazy">
+        <figcaption>תרשים Sequence — lifelines, activation, הודעות, ומקטעי loop/alt</figcaption>
+      </figure>
+      <p><strong>תרשים רצף (Sequence Diagram)</strong> מראה כיצד אובייקטים מתקשרים <strong>לאורך זמן</strong> — הסדר המדויק של ההודעות המוחלפות בתרחיש נתון. <strong>הזמן זורם כלפי מטה.</strong> הוא שייך לשלב ה<strong>תיכון <span dir="ltr">(Design)</span></strong> ומשמש מפתחים ואדריכלים כדי לפרט את שיתוף הפעולה עבור תרחיש/פעולה בודדים.</p>
+      <ul><li><strong>Lifeline:</strong> קו מקווקו אנכי לכל משתתף.</li><li><strong>Activation bar:</strong> מלבן דק על הקו — פרק זמן פעילות.</li><li><strong>הודעה סינכרונית:</strong> חץ מלא →. <strong>הודעת חזרה:</strong> חץ מקווקו -->.</li><li><strong>Combined fragments:</strong> <code>loop</code> (חזרה), <code>alt</code> (if/else).</li></ul>
+      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
     </section>
 
     <section class="lesson-block">
@@ -280,19 +185,74 @@
         <li><strong>מקטעים משולבים <span dir="ltr">(combined fragments)</span>:</strong> <code>loop</code> (חזרה), <code>alt</code> (if/else עם ענפים) — ניתן לקנן <code>loop</code> בתוך <code>alt</code>.</li>
       </ul>
       <p><strong>דוגמת ענף <code>alt</code> קונקרטי (תשלום):</strong> בתוך מקטע <code>alt</code>, ענף <span dir="ltr">[approved]</span> שולח <span dir="ltr">prepareOrder()</span>; ענף <span dir="ltr">[else]</span> (תשלום נכשל) שולח <span dir="ltr">showError("Payment failed")</span>. כך תרשים אחד מכסה גם את מסלול ההצלחה וגם את הכשל.</p>
-      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span>, <span dir="ltr">UML (1).pdf</span>, <span dir="ltr">UML Diagrams and PlantUML.pdf</span></p>
+      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span>, <span dir="ltr">UML Diagrams and PlantUML.pdf</span></p>
     </section>
 
     <section class="lesson-block">
-      <h2>דוגמה מלאה — Communication (Collaboration) של אותה העברת כספים</h2>
+      <h2>דוגמה מלאה — Sequence של העברת כספים</h2>
+      <p>ממשיכים את תרחיש הבנק: הלקוח לחץ "העבר כספים". מהו סדר ההודעות בין הרכיבים? זה בדיוק מה ש־<strong>תרשים Sequence</strong> מראה — הרכיב הנכון לתיאור <strong>חילופי הודעות צעד־צעד</strong> בין <span dir="ltr">Browser</span>, <span dir="ltr">AppServer</span> ו־<span dir="ltr">Database</span>.</p>
+      <ul>
+        <li><strong>Lifelines (שלושה):</strong> <span dir="ltr">:Browser</span>, <span dir="ltr">:AppServer</span>, <span dir="ltr">:Database</span> — כל אחד קו מקווקו אנכי כלפי מטה.</li>
+        <li><strong>הודעות סינכרוניות (חץ מלא →):</strong> נשלחות לפי הסדר האנכי, מוקדם למעלה, מאוחר למטה.</li>
+        <li><strong>הודעות חזרה (חץ מקווקו --&gt;):</strong> מחזירות ערך לשולח.</li>
+        <li><strong>Activation bars:</strong> מלבן דק על ה־lifeline — פרק הזמן שבו אותו רכיב <em>פעיל בעיבוד</em>.</li>
+      </ul>
+      <p><strong>סדר ההודעות:</strong></p>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+sequenceDiagram
+  actor U as Customer
+  participant B as :Browser
+  participant S as :AppServer
+  participant D as :Database
+  U->>B: לוחץ "העבר כספים"
+  B->>S: transferFunds(from, to, amount)
+  activate S
+  S->>D: checkBalance(from)
+  activate D
+  D-->>S: balance
+  deactivate D
+  S->>D: debit(from, amount)
+  S->>D: credit(to, amount)
+  D-->>S: ok
+  S-->>B: success
+  deactivate S
+  B-->>U: אישור העברה
+        </pre>
+        <figcaption>תרשים Sequence — העברת כספים: הזמן זורם מלמעלה למטה. חץ מלא = הודעה סינכרונית, חץ מקווקו = חזרה, המלבן על ה-lifeline = activation bar (הרכיב פעיל). זה הרכיב הנכון לתיאור סדר-הודעות צעד-צעד — ולכן עדיף כאן על Communication.</figcaption>
+      </figure>
+      <aside class="callout callout-key">
+        <p><strong>למה Sequence ולא Communication? (נבדק במבחן)</strong> שני התרשימים מציגים את <em>אותו</em> מידע, אך <strong>Sequence מדגיש את סדר הזמן</strong> — ציר אנכי שבו רואים מייד מה קורה לפני מה. כשהשאלה היא "מהו רצף הצעדים" (העברת כספים צעד־צעד), Sequence הוא הבחירה הטבעית. Communication מדגיש קשרים בין אובייקטים, לא ציר זמן רציף.</p>
+      </aside>
+      <p class="source-tag">מקור: <span dir="ltr">Exercise5-BehavioralDiagrams.pdf</span>, <span dir="ltr">OOAD_Course_Summary.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>Communication Diagram — אותו מידע, מבנה אחר</h2>
+      <figure class="pdf-figure">
+        <img src="../assets/figures/uml-communication.png" alt="תרשים Communication — אובייקטים מקושרים עם הודעות ממוספרות" loading="lazy">
+        <figcaption>תרשים Communication — אובייקטים מקושרים עם הודעות ממוספרות</figcaption>
+      </figure>
+      <p><strong>תרשים תקשורת (Communication Diagram)</strong> מציג את אותו מידע כמו Sequence, אך מאורגן סביב <strong>מבנה האובייקטים</strong> — אילו אובייקטים מקושרים לאילו, עם הודעות <strong>ממוספרות</strong> (1:, 1.1:, 2:) שמראות את סדר הקריאות. מעדיפים אותו כשמבנה השיתופים חשוב יותר מציר הזמן המדויק.</p>
       <aside class="callout callout-note">
         <p><strong>שם נרדף:</strong> בגרסאות UML ישנות (ובחלק ממצגות הקורס) תרשים Communication נקרא <strong>Collaboration Diagram <span dir="ltr">(תרשים שיתוף פעולה / שת"פ)</span></strong>. אם במבחן מופיע "collaboration diagram" — הכוונה בדיוק ל־Communication.</p>
       </aside>
+      <p class="source-tag">מקור: <span dir="ltr">UML-examples-updated.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>דוגמה מלאה — Communication של אותה העברת כספים</h2>
       <p>ניקח את <em>אותו</em> תרחיש העברת הכספים ונארגן אותו סביב <strong>מבנה האובייקטים</strong> במקום סביב ציר הזמן. במקום קווי חיים אנכיים, מציירים את הרכיבים כקופסאות המחוברות בקווים <span dir="ltr">(links)</span>, וההודעות מסומנות <strong>במספרים</strong> שמציינים את הסדר:</p>
-      <pre dir="ltr"><code>:Browser  ──1: transferFunds()──▶  :AppServer
-:AppServer ──2: checkBalance()──▶  :Database
-:AppServer ──2.1: debit()──▶       :Database
-:AppServer ──2.2: credit()──▶      :Database</code></pre>
+            <figure class="diagram">
+        <pre class="mermaid" dir="ltr">
+flowchart LR
+  B[":Browser"] -->|"1: transferFunds()"| S[":AppServer"]
+  S -->|"2: checkBalance()"| D[":Database"]
+  S -->|"2.1: debit()"| D
+  S -->|"2.2: credit()"| D
+        </pre>
+        <figcaption>תרשים Communication — אותה העברת כספים: אותם אובייקטים, אבל הדגש על הקשרים והמספור (2.1, 2.2 = תת-צעדים של 2). מדגיש «מי מדבר עם מי», לא ציר הזמן.</figcaption>
+      </figure>
       <ul>
         <li><strong>המספור הוא סדר ההודעות:</strong> <span dir="ltr">1:</span> ראשונה, <span dir="ltr">2:</span> שנייה, ו־<span dir="ltr">2.1:</span> / <span dir="ltr">2.2:</span> הן הודעות מקוננות שנשלחות <em>בתוך</em> הטיפול בהודעה <span dir="ltr">2:</span>. המספור <strong>מחליף</strong> את ציר הזמן האנכי של Sequence.</li>
         <li><strong>הדגש:</strong> רואים מייד <em>מי מקושר למי</em> (Browser⟷AppServer⟷Database), אך את סדר הזמן צריך לשחזר מהמספרים.</li>
@@ -319,7 +279,17 @@
     </section>
 
     <section class="lesson-block">
-      <h2>בדיקה עצמית — סימונים ותרחישים</h2>
+      <h2>בדיקה עצמית</h2>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מה מגדיר Use Case Diagram?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-correct="true" data-feedback="נכון. מבט חיצוני על הפונקציונליות וגבול המערכת.">את היקף המערכת: מה היא עושה ולמי (שחקנים ותרחישים)</button></li>
+          <li><button type="button" data-feedback="לא — זה Sequence Diagram.">את הסדר המדויק של הודעות בין אובייקטים</button></li>
+          <li><button type="button" data-feedback="לא — זה Class Diagram.">את מבנה המחלקות הפנימי</button></li>
+          <li><button type="button" data-feedback="לא — זה State Diagram.">את מחזור החיים של אובייקט</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
       <div class="quiz" data-quiz>
         <p class="quiz-q">מהו שחקן <span dir="ltr">(Actor)</span> בתרשים Use Case?</p>
         <ul class="quiz-opts">
@@ -341,12 +311,32 @@
         <p class="quiz-feedback" hidden></p>
       </div>
       <div class="quiz" data-quiz>
+        <p class="quiz-q">בתרשים Sequence, לאיזה כיוון זורם הזמן?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — הזמן אנכי (מטה), לא אופקי.">משמאל לימין</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. הודעות מוקדמות למעלה, מאוחרות למטה.">כלפי מטה לאורך ה-lifelines</button></li>
+          <li><button type="button" data-feedback="לא — הסדר האנכי הוא המהות.">אין משמעות לזמן</button></li>
+          <li><button type="button" data-feedback="לא — כלפי מטה.">כלפי מעלה</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
         <p class="quiz-q">בתרשים Sequence, מהו ה־<span dir="ltr">activation bar</span> (מלבן דק על ה־lifeline)?</p>
         <ul class="quiz-opts">
           <li><button type="button" data-feedback="לא — הודעה מיוצגת בחץ, לא במלבן.">הודעה שנשלחת בין אובייקטים</button></li>
           <li><button type="button" data-correct="true" data-feedback="נכון. ה-activation bar מסמן את פרק הזמן שבו הרכיב פעיל בעיבוד.">פרק הזמן שבו הרכיב <strong>פעיל בעיבוד</strong></button></li>
           <li><button type="button" data-feedback="לא — חיסול אובייקט מסומן ב-X בתחתית הקו.">חיסול (destroy) של האובייקט</button></li>
           <li><button type="button" data-feedback="לא — מקטע loop/alt הוא מסגרת נפרדת, לא המלבן הדק.">מקטע חזרה loop</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">מהו combined fragment מסוג <code>alt</code>?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-feedback="לא — חזרה היא &lt;code&gt;loop&lt;/code&gt;.">חזרה על רצף (loop)</button></li>
+          <li><button type="button" data-correct="true" data-feedback="נכון. alt = אלטרנטיבות לפי תנאי.">מקטע המייצג בחירה מותנית (if/else) בין רצפי הודעות</button></li>
+          <li><button type="button" data-feedback="לא — לא קשור.">הודעה אסינכרונית</button></li>
+          <li><button type="button" data-feedback="לא — זה lifeline.">קו חיים של אובייקט</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>

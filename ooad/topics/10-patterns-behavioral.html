@@ -84,37 +84,7 @@
 
     <section class="lesson-block">
       <h2>Observer</h2>
-      <p><strong>מטרה:</strong> תלות <strong>אחד-לרבים</strong> — כשאובייקט (Subject) משנה מצב, כל התלויים בו (Observers) <strong>מקבלים הודעה ומתעדכנים אוטומטית</strong>.</p>
-<pre dir="ltr"><code>class Observer { virtual void update() = 0; };
-class Subject {
-  vector&lt;Observer*&gt; observers;
-  void notify() { for (auto o : observers) o-&gt;update(); }
-};</code></pre>      <p><strong>שימוש:</strong> מערכות אירועים, התראות MVC, pub/sub.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Behavioral-Design-Patterns.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Strategy ו-Template Method</h2>
-      <p><strong>Strategy:</strong> להגדיר <strong>משפחת אלגוריתמים</strong>, לעטוף כל אחד, ולהפוך אותם ל<strong>ניתנים להחלפה בזמן ריצה</strong>. הלקוח בוחר אסטרטגיה דרך ממשק משותף. דוגמה: אלגוריתמי מיון, שיטות תשלום, אסטרטגיות דחיסה.</p>
-      <p><strong>Template Method:</strong> להגדיר את <strong>שלד האלגוריתם</strong> במחלקת הבסיס, ולהשאיר לתת-מחלקות למלא שלבים ספציפיים. דוגמה: frameworks, לולאות משחק, צינורות ייבוא נתונים.</p>
-      <aside class="callout callout-key">      <p><strong>Strategy מול Template Method:</strong> Strategy מחליף אלגוריתם שלם דרך <em>הרכבה</em> (composition) בזמן ריצה; Template Method משנה שלבים דרך <em>הורשה</em> (inheritance) בזמן קומפילציה.</p>
-</aside>
-
-      <p class="source-tag">מקור: <span dir="ltr">Exercise12-DesignPatternsStrategyTemplateIterator.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Iterator ו-Command</h2>
-      <p><strong>Iterator:</strong> לספק דרך <strong>אחידה לעבור על אוסף</strong> ברצף, בלי לחשוף את הייצוג הפנימי שלו. דוגמה: איטרטורים של STL, לולאות range-based, cursors של מסד נתונים.</p>
-      <p><strong>Command:</strong> לעטוף <strong>בקשה כאובייקט</strong> — מאפשר לפרמטר בקשות, לתייר/לתעד אותן, ולתמוך בפעולות ניתנות לביטול (undo/redo). דוגמה: פעולות GUI (undo/redo), תורי משימות, הקלטת מאקרו.</p>
-
-      <p class="source-tag">מקור: <span dir="ltr">Behavioral-Design-Patterns.pdf</span></p>
-    </section>
-
-    <section class="lesson-block">
-      <h2>Observer — משתתפים, זרימה ובאגים (שאלת מבחן Q27)</h2>
-      <p>שאלת המבחן Q27 מבקשת במפורש <strong>לתאר את המשתתפים (participants) והיחסים</strong> בתבנית Observer. לכן חשוב לדעת בעל-פה את ארבעת התפקידים ואת רצף ההודעות.</p>
+      <p><strong>מטרה:</strong> תלות <strong>אחד-לרבים</strong> — כשאובייקט (<span dir="ltr">Subject</span>) משנה מצב, כל התלויים בו (<span dir="ltr">Observers</span>) <strong>מקבלים הודעה ומתעדכנים אוטומטית</strong>. שימושים אופייניים: מערכות אירועים, התראות <span dir="ltr">MVC</span>, <span dir="ltr">pub/sub</span>. שאלת המבחן Q27 מבקשת במפורש <strong>לתאר את המשתתפים (participants) והיחסים</strong> — לכן חשוב לדעת בעל-פה את ארבעת התפקידים ואת רצף ההודעות.</p>
 
       <h3>המשתתפים (Participants)</h3>
       <ul>
@@ -173,8 +143,8 @@ public:
     </section>
 
     <section class="lesson-block">
-      <h2>Strategy — משתתפים ודוגמה עובדת (שאלת מבחן Q28c)</h2>
-      <p>Q28c מבקש: לחנות יש כמה אסטרטגיות הנחה הניתנות להחלפה בזמן ריצה — <strong>איזו תבנית, לאיזו קטגוריה היא שייכת, ולמה היא עדיפה על שרשרת <span dir="ltr">if/else</span></strong>.</p>
+      <h2>Strategy</h2>
+      <p><strong>מטרה:</strong> להגדיר <strong>משפחת אלגוריתמים</strong>, לעטוף כל אחד, ולהפוך אותם ל<strong>ניתנים להחלפה בזמן ריצה</strong> דרך ממשק משותף — הלקוח בוחר אסטרטגיה. דוגמאות: אלגוריתמי מיון, שיטות תשלום, אסטרטגיות דחיסה. שאלת המבחן Q28c מציגה חנות עם כמה אסטרטגיות הנחה הניתנות להחלפה בזמן ריצה ושואלת <strong>איזו תבנית, לאיזו קטגוריה היא שייכת, ולמה היא עדיפה על שרשרת <span dir="ltr">if/else</span></strong>.</p>
 
       <h3>המשתתפים</h3>
       <ul>
@@ -222,7 +192,11 @@ cart.setStrategy(&paypal); cart.checkout(50);          // הוחלף בלי if/e
     </section>
 
     <section class="lesson-block">
-      <h2>Template Method — שלד קבוע, שלבים משתנים</h2>
+      <h2>Template Method</h2>
+      <p><strong>מטרה:</strong> להגדיר את <strong>שלד האלגוריתם</strong> במחלקת הבסיס ולהשאיר לתת-מחלקות למלא שלבים ספציפיים — שלד קבוע, שלבים משתנים. דוגמאות: frameworks, לולאות משחק, צינורות ייבוא נתונים.</p>
+      <aside class="callout callout-key">
+        <p><strong>Strategy מול Template Method:</strong> Strategy מחליף אלגוריתם שלם דרך <em>הרכבה</em> (composition) בזמן ריצה; Template Method משנה שלבים דרך <em>הורשה</em> (inheritance) בזמן קומפילציה.</p>
+      </aside>
       <h3>המשתתפים</h3>
       <ul>
         <li><strong><span dir="ltr">AbstractClass</span></strong> — מגדיר את <span dir="ltr">templateMethod()</span> (השלד, סדר השלבים הקבוע) ואת ה-<span dir="ltr">primitiveOperation()</span> המופשטות (השלבים שתת-מחלקות ימלאו).</li>
@@ -269,7 +243,8 @@ class CSVExporter : public DataExporter {     // ConcreteClass
     </section>
 
     <section class="lesson-block">
-      <h2>Iterator — מעבר אחיד על אוסף</h2>
+      <h2>Iterator</h2>
+      <p><strong>מטרה:</strong> לספק דרך <strong>אחידה לעבור על אוסף</strong> ברצף, בלי לחשוף את הייצוג הפנימי שלו. דוגמאות: איטרטורים של <span dir="ltr">STL</span>, לולאות <span dir="ltr">range-based</span>, <span dir="ltr">cursors</span> של מסד נתונים.</p>
       <h3>המשתתפים</h3>
       <ul>
         <li><strong><span dir="ltr">Iterator</span></strong> — ממשק המעבר: <span dir="ltr">first()</span>, <span dir="ltr">next()</span>, <span dir="ltr">isDone()</span>, <span dir="ltr">currentItem()</span> (או בגרסה מקוצרת <span dir="ltr">hasNext()</span> / <span dir="ltr">next()</span>).</li>
@@ -321,7 +296,8 @@ for (Iterator* it = repo.createIterator(); it-&gt;hasNext(); )
     </section>
 
     <section class="lesson-block">
-      <h2>Command — בקשה כאובייקט (שאלת מבחן Q20)</h2>
+      <h2>Command</h2>
+      <p><strong>מטרה:</strong> לעטוף <strong>בקשה כאובייקט</strong> — מאפשר לפרמטר בקשות, לתייר/לתעד אותן ולתמוך בפעולות ניתנות לביטול (<span dir="ltr">undo/redo</span>). דוגמאות: פעולות <span dir="ltr">GUI</span>, תורי משימות, הקלטת מאקרו. (שאלת מבחן Q20.)</p>
       <h3>המשתתפים</h3>
       <ul>
         <li><strong><span dir="ltr">Command</span></strong> — הממשק עם <span dir="ltr">execute()</span> (ולרוב גם <span dir="ltr">undo()</span>).</li>
@@ -371,22 +347,22 @@ public:
     <section class="lesson-block">
       <h2>בדיקה עצמית</h2>
       <div class="quiz" data-quiz>
-        <p class="quiz-q">ב-Observer, מהו הבאג הנפוץ ביותר ב-C++?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-correct="true" data-feedback="נכון. משקיף שנמחק בלי detach() נשאר ברשימת ה-Subject, וקריאת update() הבאה ניגשת לזיכרון משוחרר.">שכחת <code>detach()</code> לפני מחיקת משקיף → מצביע תלוי</button></li>
-          <li><button type="button" data-feedback="לא — סדר ההתראה אכן לא מוגדר, אבל זה לא באג הזיכרון הקלאסי.">קריאה ל-<code>attach()</code> פעמיים</button></li>
-          <li><button type="button" data-feedback="לא — ל-Subject מותר להכיר רק את הממשק Observer; זו דווקא מטרת התבנית.">ה-Subject מכיר את המחלקות הקונקרטיות</button></li>
-          <li><button type="button" data-feedback="לא — pull הוא בחירת תכן לגיטימית, לא באג.">שימוש במודל pull</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
         <p class="quiz-q">מהם ארבעת המשתתפים בתבנית Observer (שאלת Q27)?</p>
         <ul class="quiz-opts">
           <li><button type="button" data-feedback="לא — אלה משתתפי Command.">Command, Invoker, Receiver, Client</button></li>
           <li><button type="button" data-correct="true" data-feedback="נכון. Subject (attach/detach/notify), Observer (update), ו-ConcreteSubject/ConcreteObserver.">Subject, Observer, ConcreteSubject, ConcreteObserver</button></li>
           <li><button type="button" data-feedback="לא — אלה משתתפי Iterator.">Aggregate, Iterator, ConcreteAggregate, ConcreteIterator</button></li>
           <li><button type="button" data-feedback="לא — Context/Strategy שייכים ל-Strategy.">Context, Strategy, ConcreteStrategy, Observer</button></li>
+        </ul>
+        <p class="quiz-feedback" hidden></p>
+      </div>
+      <div class="quiz" data-quiz>
+        <p class="quiz-q">ב-Observer, מהו הבאג הנפוץ ביותר ב-C++?</p>
+        <ul class="quiz-opts">
+          <li><button type="button" data-correct="true" data-feedback="נכון. משקיף שנמחק בלי detach() נשאר ברשימת ה-Subject, וקריאת update() הבאה ניגשת לזיכרון משוחרר.">שכחת <code>detach()</code> לפני מחיקת משקיף → מצביע תלוי</button></li>
+          <li><button type="button" data-feedback="לא — סדר ההתראה אכן לא מוגדר, אבל זה לא באג הזיכרון הקלאסי.">קריאה ל-<code>attach()</code> פעמיים</button></li>
+          <li><button type="button" data-feedback="לא — ל-Subject מותר להכיר רק את הממשק Observer; זו דווקא מטרת התבנית.">ה-Subject מכיר את המחלקות הקונקרטיות</button></li>
+          <li><button type="button" data-feedback="לא — pull הוא בחירת תכן לגיטימית, לא באג.">שימוש במודל pull</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>
@@ -407,40 +383,6 @@ public:
           <li><button type="button" data-correct="true" data-feedback="נכון. מחלקת הבסיס (templateMethod) קוראת אל השלבים בתת-המחלקות — היפוך בקרה.">Template Method</button></li>
           <li><button type="button" data-feedback="לא — Iterator עוסק במעבר על אוסף.">Iterator</button></li>
           <li><button type="button" data-feedback="לא — Command עוטף בקשה כאובייקט.">Command</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-    </section>
-
-    <section class="lesson-block">
-      <h2>בדיקה עצמית — מיפוי תבניות</h2>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">איזו תבנית מגדירה תלות אחד-לרבים שבה שינוי מצב מודיע אוטומטית לכל התלויים?</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — Strategy מחליף אלגוריתם.">Strategy</button></li>
-          <li><button type="button" data-feedback="לא — Command עוטף בקשה.">Command</button></li>
-          <li><button type="button" data-feedback="לא — תבנית מבנה (עצים).">Composite</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. Subject מודיע ל-Observers.">Observer</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">להגדרת משפחת אלגוריתמים הניתנים להחלפה בזמן ריצה דרך ממשק משותף — מתאימה:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — Template Method משנה שלבים דרך הורשה.">Template Method</button></li>
-          <li><button type="button" data-feedback="לא — Iterator עובר על אוסף.">Iterator</button></li>
-          <li><button type="button" data-feedback="לא — Observer עוסק בהתראות.">Observer</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. אלגוריתמים מוחלפים דרך הרכבה בזמן ריצה.">Strategy</button></li>
-        </ul>
-        <p class="quiz-feedback" hidden></p>
-      </div>
-      <div class="quiz" data-quiz>
-        <p class="quiz-q">הגדרת שלד אלגוריתם בבסיס והשארת שלבים לתת-מחלקות היא:</p>
-        <ul class="quiz-opts">
-          <li><button type="button" data-feedback="לא — Strategy מחליף אלגוריתם שלם דרך הרכבה.">Strategy</button></li>
-          <li><button type="button" data-feedback="לא — Command עוטף בקשה.">Command</button></li>
-          <li><button type="button" data-correct="true" data-feedback="נכון. שלד קבוע, שלבים דרך הורשה.">Template Method</button></li>
-          <li><button type="button" data-feedback="לא — תבנית מבנה.">Facade</button></li>
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>

@@ -102,7 +102,7 @@
       </aside>
       <p>יש שפות שבהן הבעיה נפתרת אחרת: C ו-C++ משתמשות ב<strong>ניהול זיכרון ידני</strong> (המתכנת אחראי ל-<code>new</code>/<code>delete</code>), בעוד שפות כמו <span dir="ltr">Java</span> משתמשות ב<strong>ניהול אוטומטי</strong>. לכל גישה יתרונות וחסרונות: ידני נותן שליטה מלאה ודטרמיניזם אך פגיע לתקלות; אוטומטי בטוח יותר אך פחות צפוי בתזמון השחרור.</p>
       <aside class="callout callout-note">
-      <p><strong>העשרה — <span dir="ltr">Garbage Collection (GC)</span>:</strong> איסוף אשפה הוא מנגנון של סביבת הריצה <span dir="ltr">(runtime)</span> שמוצא אוטומטית אובייקטים שכבר <strong>לא ניתן להגיע אליהם</strong> מהתוכנית (אין אף מצביע חי אליהם) ומשחרר את הזיכרון שלהם — בלי שהמתכנת יקרא ל-<code>delete</code>. ל-<span dir="ltr">Java</span> ו-<span dir="ltr">C#</span> יש GC; ל-C ול-C++ <strong>אין</strong> — ולכן דווקא שם צריך מצביעים חכמים. שימו לב: מצביע חכם ב-C++ משחרר <strong>דטרמיניסטית</strong> ברגע היציאה מה-scope, בעוד GC משחרר "מתישהו" בהמשך, בזמן לא צפוי.</p>
+      <p><strong><span dir="ltr">Garbage Collection (GC)</span>:</strong> מנגנון <span dir="ltr">runtime</span> שמשחרר אוטומטית אובייקטים שלא ניתן עוד להגיע אליהם. ל-<span dir="ltr">Java</span> ו-<span dir="ltr">C#</span> יש GC; ל-C ול-C++ אין — ולכן דווקא שם צריך מצביעים חכמים. הבדל מהותי: מצביע חכם משחרר <strong>דטרמיניסטית</strong> ביציאה מה-scope, בעוד GC משחרר "מתישהו" בזמן לא צפוי.</p>
       </aside>
       <p class="source-tag">מקור: <span dir="ltr">Smart-Pointers.pdf · מצגת מס׳ 2</span></p>
     </section>
@@ -163,6 +163,23 @@ public:
       <p><strong>העשרה:</strong> מימוש מצביע חכם <strong>כללי לחלוטין</strong> קשה — במיוחד לגרום לו להמיר בין טיפוסים לאורך היררכיית ירושה כמו שמצביע גולמי עושה (למשל <span dir="ltr">Derived*</span> ל-<span dir="ltr">Base*</span>), ולתמוך בבדיקת <span dir="ltr">null</span> טבעית. אלה מהחסרונות של מצביעים חכמים: קשים יותר לכתיבה ולהבנה, וההמרה למצביע גולמי בעייתית. לא נדרש למבחן — רק דעו שזה קיים.</p>
       </aside>
       <p class="source-tag">מקור: <span dir="ltr">smart_pointers.pdf</span></p>
+    </section>
+
+    <section class="lesson-block">
+      <h2>וידאו מומלץ</h2>
+      <aside class="callout callout-note">
+      <figure class="video-embed">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/6vP8RPEDe6A"
+            title="C++ Smart Pointer — unique / shared / weak (Kevin Wood)"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+        <figcaption class="video-note"><span dir="ltr">C++ Smart Pointer — unique / shared / weak (Kevin Wood)</span> — הדגמה ויזואלית קצרה של מתי משתמשים בכל מצביע חכם ואיך הבעלות וספירת ההפניות מתנהגות בפועל.</figcaption>
+      </figure>
+      </aside>
     </section>
 
     <section class="lesson-block">
@@ -247,23 +264,6 @@ public:
         </ul>
         <p class="quiz-feedback" hidden></p>
       </div>
-    </section>
-
-    <section class="lesson-block">
-      <h2>וידאו מומלץ</h2>
-      <aside class="callout callout-note">
-      <figure class="video-embed">
-        <div class="video-frame">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/6vP8RPEDe6A"
-            title="C++ Smart Pointer — unique / shared / weak (Kevin Wood)"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-        </div>
-        <figcaption class="video-note"><span dir="ltr">C++ Smart Pointer — unique / shared / weak (Kevin Wood)</span> — הדגמה ויזואלית קצרה של מתי משתמשים בכל מצביע חכם ואיך הבעלות וספירת ההפניות מתנהגות בפועל.</figcaption>
-      </figure>
-      </aside>
     </section>
 
     <div class="mark-done-bottom">
